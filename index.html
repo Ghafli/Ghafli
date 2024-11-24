@@ -1,26 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>مطور ويب - Ghafli</title>
+    <!-- Add Arabic font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e4d6b, #2c3e50);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: #34495e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f9f9f9;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Arabic-specific styles */
+        input, textarea {
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-container">
-          <h1><sub>Ghafli</sub><sup>.com</sup></h1    >
-        <form action="#" method="post">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Log In</button>
-        </form>
-        <div class="forgot-password">
-            <a href="#">Forgot Password?</a>
+    <header>
+        <div class="container">
+            <h1>Ghafli</h1>
+            <p>مطور ويب متكامل</p>
         </div>
-    </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#ask-me">مهاراتي</a></li>
+            <li><a href="#contact">اتصل بي</a></li>
+            <li><a href="#share-idea">شاركني فكرتك</a></li>
+        </ul>
+    </nav>
+
+    <section id="ask-me" class="skills">
+        <div class="container">
+            <h2>خبراتي</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML5</h3>
+                    <p>تصميم صفحات ويب حديثة</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS3</h3>
+                    <p>تصميم متجاوب وحركات</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-php"></i>
+                    <h3>PHP</h3>
+                    <p>تطوير خلفي وواجهات برمجية</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <p>تطبيقات ويب تفاعلية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>اتصل بي</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">الاسم</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">الرسالة</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">إرسال الرسالة</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="share-idea">
+        <div class="container">
+            <h2>شاركني فكرتك</h2>
+            <div class="contact-form">
+                <form id="ideaForm">
+                    <div class="form-group">
+                        <label for="projectTitle">عنوان المشروع</label>
+                        <input type="text" id="projectTitle" name="projectTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDescription">وصف المشروع</label>
+                        <textarea id="projectDescription" name="projectDescription" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">الميزانية المتوقعة</label>
+                        <input type="text" id="budget" name="budget" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">المدة المتوقعة</label>
+                        <input type="text" id="timeline" name="timeline" required>
+                    </div>
+                    <button type="submit">إرسال فكرة المشروع</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة &copy; ٢٠٢٤ غافلي</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لتواصلك! سأرد عليك في أقرب وقت.');
+            this.reset();
+        });
+
+        document.getElementById('ideaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لمشاركة فكرة مشروعك! سأراجعها وأتواصل معك قريباً.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
