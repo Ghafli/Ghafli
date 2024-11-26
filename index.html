@@ -1,14 +1,16 @@
 <!DOCTYPE HTML5>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مطور ويب - Ghafli</title>
-    <!-- Add Arabic font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="js/validation.js"></script>
-    <link rel="stylesheet" href="styles.css">
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>مطور ويب - Ghafli</title>
+          <!-- Add Arabic font from Google Fonts -->
+          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+          <!-- Merged CSS file -->
+          <link rel="stylesheet" href="styles.css">
+          <!-- Add validation script from contact and idea forms -->
+          <script src="js/validation.js"></script>
 </head>
 <body>
     <header>
@@ -63,6 +65,7 @@
             name='contactForm' 
             id='contactForm' 
             method='POST' 
+            onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' 
             accept-charset='UTF-8' 
             enctype='multipart/form-data'>
 
@@ -74,7 +77,7 @@
           <h2>اتصل بي</h2>
 
           <div class="form-group">
-              <label for="contactEmail">البريد الإلكتروني <em>*</em></label>
+              <label for="contactEmail">البريد الإلكتروني <em class="required">*</em></label>
               <input type="email" 
                      id="contactEmail"
                      name="Email" 
@@ -89,14 +92,13 @@
               <input type="tel" 
                      id="contactPhone"
                      name="PhoneNumber_countrycode" 
-                     phoneFormat="1" 
                      maxlength="20" 
                      fieldType="11" 
                      placeholder="050-001-2344">
           </div>
 
           <div class="form-group">
-              <label for="contactFirstName">الأسم الأول <em>*</em></label>
+              <label for="contactFirstName">الأسم الأول <em class="required">*</em></label>
               <input type="text" 
                      id="contactFirstName"
                      name="Name_First" 
@@ -106,7 +108,7 @@
           </div>
 
           <div class="form-group">
-              <label for="contactLastName">العائلة <em>*</em></label>
+              <label for="contactLastName">العائلة <em class="required">*</em></label>
               <input type="text" 
                      id="contactLastName"
                      name="Name_Last" 
@@ -116,7 +118,7 @@
           </div>
 
           <div class="form-group">
-              <label for="contactMessage">الرسالة <em>*</em></label>
+              <label for="contactMessage">الرسالة <em class="required">*</em></label>
               <textarea id="contactMessage"
                        name="MultiLine" 
                        maxlength="65535" 
@@ -124,111 +126,102 @@
                        required></textarea>
           </div>
 
-          <div class="form-group">
-              <label for="contactWebsite">Website</label>
-              <input type="url" 
-                     id="contactWebsite"
-                     name="Website" 
-                     maxlength="2083" 
-                     placeholder="https://example.com">
-          </div>
-
           <button type="submit">إرسال الرسالة</button>
       </form>
   </div>
 </section>
 
-      <section id="share-idea" calss="share.idea">
-        <div class="container">
-            <form action='https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit' 
-                  name='form' 
-                  id='form' 
-                  method='POST' 
-                  accept-charset='UTF-8' 
-                  enctype='multipart/form-data'
-                  class="contact-form">
-      
-                <!-- Hidden Fields -->
-                <input type="hidden" name="zf_referrer_name" value="">
-                <input type="hidden" name="zf_redirect_url" value="">
-                <input type="hidden" name="zc_gad" value="">
-      
-                <h2>شاركني فكرتك</h2>
-      
-                <div class="form-group">
-                    <label for="email">البريد الإلكتروني <em>*</em></label>
-                    <input type="email" 
-                           id="email"
-                           name="Email" 
-                           maxlength="255" 
-                           fieldType="9" 
-                           placeholder="your@email.com" 
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="firstName">الأسم الأول<em>*</em></label>
-                    <input type="text" 
-                           id="firstName"
-                           name="Name_First" 
-                           maxlength="255" 
-                           fieldType="7"
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="lastName">العائلة<em>*</em></label>
-                    <input type="text" 
-                           id="lastName"
-                           name="Name_Last" 
-                           maxlength="255" 
-                           fieldType="7"
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="projectTitle">عنوان المشروع <em>*</em></label>
-                    <input type="text" 
-                           id="projectTitle"
-                           name="SingleLine" 
-                           maxlength="255" 
-                           fieldType="1" 
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="projectDesc">وصف المشروع <em>*</em></label>
-                    <textarea id="projectDesc"
-                              name="MultiLine" 
-                              maxlength="65535" 
-                              required></textarea>
-                </div>
-      
-                <div class="form-group">
-                    <label for="budget">الميزانية المتوقعة <em>*</em></label>
-                    <div class="currency-input">
-                        <input type="text" 
-                               id="budget"
-                               name="Currency" 
-                               maxlength="50" 
-                               required>
-                        <span class="currency-symbol">﷼</span>
-                    </div>
-                </div>
-      
-                <div class="form-group">
-                    <label for="dueDate">التاريخ المتوقع للتسليم</label>
-                    <input type="date" 
-                           id="dueDate"
-                           name="Date" 
-                           maxlength="25">
-                </div>
-      
-                <button type="submit">إرسال فكرة المشروع</button>
-            </form autocomplete="off">
-        </div>
-      </section>
+      <section id="share-idea" class="share-form">
+  <div class="container">
+      <form action='https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit' 
+            name='ideaForm' 
+            id='ideaForm' 
+            method='POST' 
+            onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' 
+            accept-charset='UTF-8' 
+            enctype='multipart/form-data'>
 
+          <!-- Hidden Fields -->
+          <input type="hidden" name="zf_referrer_name" value="">
+          <input type="hidden" name="zf_redirect_url" value="">
+          <input type="hidden" name="zc_gad" value="">
+
+          <h2>شاركني فكرتك</h2>
+
+          <div class="form-group">
+              <label for="ideaEmail">البريد الإلكتروني <em class="required">*</em></label>
+              <input type="email" 
+                     id="ideaEmail"
+                     name="Email" 
+                     maxlength="255" 
+                     fieldType="9" 
+                     placeholder="your@email.com" 
+                     required>
+          </div>
+
+          <div class="form-group">
+              <label for="ideaFirstName">الأسم الأول <em class="required">*</em></label>
+              <input type="text" 
+                     id="ideaFirstName"
+                     name="Name_First" 
+                     maxlength="255" 
+                     fieldType="7"
+                     required>
+          </div>
+
+          <div class="form-group">
+              <label for="ideaLastName">العائلة <em class="required">*</em></label>
+              <input type="text" 
+                     id="ideaLastName"
+                     name="Name_Last" 
+                     maxlength="255" 
+                     fieldType="7"
+                     required>
+          </div>
+
+          <div class="form-group">
+              <label for="projectTitle">عنوان المشروع <em class="required">*</em></label>
+              <input type="text" 
+                     id="projectTitle"
+                     name="SingleLine" 
+                     maxlength="255" 
+                     fieldType="1" 
+                     required>
+          </div>
+
+          <div class="form-group">
+              <label for="projectDesc">وصف المشروع <em class="required">*</em></label>
+              <textarea id="projectDesc"
+                       name="MultiLine" 
+                       maxlength="65535" 
+                       required></textarea>
+          </div>
+
+          <div class="form-group">
+              <label for="budget">الميزانية المتوقعة <em class="required">*</em></label>
+              <div class="currency-input">
+                  <input type="text" 
+                         id="budget"
+                         name="Currency" 
+                         maxlength="50" 
+                         required>
+                  <span class="currency-symbol">﷼</span>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="dueDate">التاريخ المتوقع للتسليم</label>
+              <input type="date" 
+                     id="dueDate"
+                     name="Date" 
+                     maxlength="25">
+          </div>
+
+          <button type="submit">إرسال فكرة المشروع</button>
+      </form>
+  </div>
+</section>
+    
     <footer>
         <div class="container">
             <p>جميع الحقوق محفوظة &copy; ٢٠٢٤ Ghafli</p>
