@@ -229,23 +229,6 @@
     </footer>
 
     <script>
-        // Wrap in try-catch to handle potential errors
-        try {
-          // Your code here
-          document.querySelector('#contact form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('شكراً لتواصلك! سأرد عليك في أقرب وقت.');
-            this.reset();
-          });
-        
-          document.querySelector('#share-idea form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('شكراً لمشاركة فكرة مشروعك! سأراجعها وأتواصل معك قريباً.');
-            this.reset();
-          });
-        } catch (error) {
-          console.error('Error:', error);
-        }
 
         // Navigation Toggle
                 const navToggle = document.querySelector('.nav-toggle');
