@@ -131,86 +131,142 @@
   </div>
 </section>
 
-      <section id="share-idea" class="share-form">
+      <section id="share-idea" class="zf-templateWrapper">
   <div class="container">
-      <form action='https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit' 
-            name='ideaForm' 
-            id='ideaForm' 
-            method='POST' 
-            onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' 
-            accept-charset='UTF-8' 
-            enctype='multipart/form-data'>
+      <ul class="zf-tempHeadBdr">
+          <li class="zf-tempHeadContBdr">
+              <h2 class="zf-frmTitle"><em>شاركني فكرتك</em></h2>
+              <p class="zf-frmDesc">شاركني فكرة مشروعك وسأساعدك في تحقيقها</p>
+              <div class="zf-clearBoth"></div>
+          </li>
+      </ul>
 
-          <!-- Hidden Fields -->
-          <input type="hidden" name="zf_referrer_name" value="">
-          <input type="hidden" name="zf_redirect_url" value="">
-          <input type="hidden" name="zc_gad" value="">
+      <div class="zf-subContWrap zf-topAlign">
+          <form action='https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit' 
+                name='ideaForm' 
+                id='ideaForm' 
+                method='POST' 
+                onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' 
+                accept-charset='UTF-8' 
+                enctype='multipart/form-data'
+                class="zf-large">
 
-          <h2>شاركني فكرتك</h2>
+              <!-- Hidden Fields -->
+              <input type="hidden" name="zf_referrer_name" value="">
+              <input type="hidden" name="zf_redirect_url" value="">
+              <input type="hidden" name="zc_gad" value="">
 
-          <div class="form-group">
-              <label for="ideaEmail">البريد الإلكتروني <em class="required">*</em></label>
-              <input type="email" 
-                     id="ideaEmail"
-                     name="Email" 
-                     maxlength="255" 
-                     fieldType="9" 
-                     placeholder="your@email.com" 
-                     required>
-          </div>
-
-          <div class="form-group">
-              <label for="ideaFirstName">الأسم الأول <em class="required">*</em></label>
-              <input type="text" 
-                     id="ideaFirstName"
-                     name="Name_First" 
-                     maxlength="255" 
-                     fieldType="7"
-                     required>
-          </div>
-
-          <div class="form-group">
-              <label for="ideaLastName">العائلة <em class="required">*</em></label>
-              <input type="text" 
-                     id="ideaLastName"
-                     name="Name_Last" 
-                     maxlength="255" 
-                     fieldType="7"
-                     required>
-          </div>
-
-          <div class="form-group">
-              <label for="projectTitle">عنوان المشروع <em class="required">*</em></label>
-              <input type="text" 
-                     id="projectTitle"
-                     name="SingleLine" 
-                     maxlength="255" 
-                     fieldType="1" 
-                     required>
-          </div>
-
-          <div class="form-group">
-              <label for="projectDesc">وصف المشروع <em class="required">*</em></label>
-              <textarea id="projectDesc"
-                       name="MultiLine" 
-                       maxlength="65535" 
-                       required></textarea>
-          </div>
-
-          <div class="form-group">
-              <label for="budget">الميزانية المتوقعة <em class="required">*</em></label>
-              <div class="currency-input">
-                  <input type="text" 
-                         id="budget"
-                         name="Currency" 
-                         maxlength="50" 
-                         required>
-                  <span class="currency-symbol">﷼</span>
+              <!-- Email Field -->
+              <div class="zf-tempFrmWrapper">
+                  <label class="zf-labelName">
+                      البريد الإلكتروني 
+                      <em class="zf-important">*</em>
+                  </label>
+                  <div class="zf-tempContDiv">
+                      <input type="email" 
+                             id="ideaEmail"
+                             name="Email" 
+                             fieldType="9"
+                             maxlength="255" 
+                             placeholder="your@email.com"
+                             required>
+                  </div>
               </div>
-          </div>
 
-          <button type="submit">إرسال فكرة المشروع</button>
-      </form>
+              <!-- Name Fields -->
+              <div class="zf-tempFrmWrapper zf-name zf-namelarge">
+                  <div class="zf-tempContDiv zf-twoType">
+                      <div class="zf-nameWrapper">
+                          <span>
+                              <input type="text" 
+                                     id="ideaFirstName"
+                                     name="Name_First" 
+                                     fieldType="7"
+                                     maxlength="255" 
+                                     required>
+                              <label>الأسم الأول</label>
+                          </span>
+                          <span>
+                              <input type="text" 
+                                     id="ideaLastName"
+                                     name="Name_Last" 
+                                     fieldType="7"
+                                     maxlength="255" 
+                                     required>
+                              <label>العائلة</label>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Project Title -->
+              <div class="zf-tempFrmWrapper">
+                  <label class="zf-labelName">
+                      عنوان المشروع 
+                      <em class="zf-important">*</em>
+                  </label>
+                  <div class="zf-tempContDiv">
+                      <input type="text" 
+                             id="projectTitle"
+                             name="SingleLine" 
+                             fieldType="1"
+                             maxlength="255" 
+                             required>
+                  </div>
+              </div>
+
+              <!-- Project Description -->
+              <div class="zf-tempFrmWrapper">
+                  <label class="zf-labelName">
+                      وصف المشروع 
+                      <em class="zf-important">*</em>
+                  </label>
+                  <div class="zf-tempContDiv">
+                      <textarea id="projectDesc"
+                                name="MultiLine" 
+                                maxlength="65535" 
+                                required></textarea>
+                  </div>
+              </div>
+
+              <!-- Expected Budget -->
+              <div class="zf-tempFrmWrapper zf-currency">
+                  <label class="zf-labelName">
+                      الميزانية المتوقعة 
+                      <em class="zf-important">*</em>
+                  </label>
+                  <div class="zf-tempContDiv">
+                      <div>
+                          <input type="text" 
+                                 id="budget"
+                                 name="Currency" 
+                                 fieldType="3"
+                                 maxlength="50" 
+                                 required>
+                          <span class="zf-symbol">﷼</span>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Due Date -->
+              <div class="zf-tempFrmWrapper">
+                  <label class="zf-labelName">
+                      التاريخ المتوقع للتسليم
+                  </label>
+                  <div class="zf-tempContDiv">
+                      <input type="date" 
+                             id="dueDate"
+                             name="Date" 
+                             maxlength="25">
+                  </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="zf-fmFooter">
+                  <button type="submit" class="zf-submitColor">إرسال فكرة المشروع</button>
+              </div>
+          </form>
+      </div>
   </div>
 </section>
     
@@ -266,6 +322,13 @@
                     });
                 });
                 });
+                    <!-- Validation Script -->
+              var zf_DateRegex = new RegExp("^(([0][1-9])|([1-2][0-9])|([3][0-1]))[-](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
+                    var zf_MonthYearRegex = new RegExp("^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[-](?:(?:19|20)[0-9]{2})$");
+                    var zf_MandArray = ["Email", "Name_First", "SingleLine", "MultiLine", "Currency"]; 
+                    var zf_FieldArray = ["Email", "Name_First", "Name_Last", "SingleLine", "MultiLine", "Currency", "Date"]; 
+                    var isSalesIQIntegrationEnabled = false;
+                    var salesIQFieldsArray = [];
         </script>
 </body>
 </html>
