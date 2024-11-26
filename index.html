@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML5>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -7,168 +7,7 @@
     <!-- Add Arabic font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, #1e4d6b, #2c3e50);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Navigation */
-        nav {
-            background: #34495e;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin: 0 1rem;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #3498db;
-        }
-
-        /* Sections */
-        section {
-            padding: 4rem 0;
-        }
-
-        section h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #2c3e50;
-        }
-
-        /* Skills Section */
-        .skills {
-            background: #f9f9f9;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .skill-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-card i {
-            font-size: 2.5rem;
-            color: #3498db;
-            margin-bottom: 1rem;
-        }
-
-        /* Form Styles */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        button {
-            background: #3498db;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        button:hover {
-            background: #2980b9;
-        }
-
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-
-        /* Arabic-specific styles */
-        input, textarea {
-            text-align: right;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -179,6 +18,9 @@
     </header>
 
     <nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+          </button>
         <ul>
             <li><a href="#ask-me">مهاراتي</a></li>
             <li><a href="#contact">اتصل بي</a></li>
@@ -203,7 +45,7 @@
                 <div class="skill-card">
                     <i class="fab fa-php"></i>
                     <h3>PHP</h3>
-                    <p>تطوير خلفي وواجهات برمجية</p>
+                    <p>تطوير الواجه الخلفية</p>
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-js"></i>
@@ -214,55 +56,178 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" calss="contact.from">
         <div class="container">
-            <h2>اتصل بي</h2>
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">الاسم</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">البريد الإلكتروني</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">الرسالة</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit">إرسال الرسالة</button>
-                </form>
-            </div>
+            <form action='https://forms.zohopublic.com/ahmedgha1/form/Contactme/formperma/tSQ2Ijeq2VxH8f01fcOCn3HfVKudEZcC3qbEYhL74e4/htmlRecords/submit' 
+                  name='form' 
+                  id='form' 
+                  method='POST' 
+                  accept-charset='UTF-8' 
+                  enctype='multipart/form-data'>
+      
+                <!-- Hidden Fields -->
+                <input type="hidden" name="zf_referrer_name" value="">
+                <input type="hidden" name="zf_redirect_url" value="">
+                <input type="hidden" name="zc_gad" value="">
+      
+                <h2>اتصل بي</h2>
+      
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني <em>*</em></label>
+                    <input type="email" 
+                           id="email"
+                           name="Email" 
+                           maxlength="255" 
+                           fieldType="9" 
+                           placeholder="youremail@example.com" 
+                           required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="phone">رقم الاتصال</label>
+                    <input type="tel" 
+                           id="phone"
+                           name="PhoneNumber_countrycode" 
+                           phoneFormat="1" 
+                           maxlength="20" 
+                           fieldType="11" 
+                           id="international_PhoneNumber_countrycode" 
+                           placeholder="050-001-2344">
+                </div>
+      
+                <div class="form-group">
+                    <label for="firstName">الأسم الأول <em>*</em></label>
+                    <input type="text" 
+                           id="firstName"
+                           name="Name_First" 
+                           maxlength="255" 
+                           fieldType="7" 
+                           required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="lastName">العائلة <em>*</em></label>
+                    <input type="text" 
+                           id="lastName"
+                           name="Name_Last" 
+                           maxlength="255" 
+                           fieldType="7" 
+                           required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="message">الرسالة <em>*</em></label>
+                    <textarea id="message"
+                              name="MultiLine" 
+                              maxlength="65535" 
+                              placeholder="اكتب رسالتك هنا على ان لا تقل عن عشرة كلمات"
+                              required></textarea>
+                </div>
+      
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" 
+                           id="website"
+                           name="Website" 
+                           maxlength="2083" 
+                           placeholder="https://example.com">
+                </div>
+      
+                <button type="submit">إرسال الرسالة</button>
+            </form autocomplete="off">
         </div>
-    </section>
+      </section>
 
-    <section id="share-idea">
+      <section id="share-idea" calss="share.idea">
         <div class="container">
-            <h2>شاركني فكرتك</h2>
-            <div class="contact-form">
-                <form id="ideaForm">
-                    <div class="form-group">
-                        <label for="projectTitle">عنوان المشروع</label>
-                        <input type="text" id="projectTitle" name="projectTitle" required>
+            <form action='https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit' 
+                  name='form' 
+                  id='form' 
+                  method='POST' 
+                  accept-charset='UTF-8' 
+                  enctype='multipart/form-data'
+                  class="contact-form">
+      
+                <!-- Hidden Fields -->
+                <input type="hidden" name="zf_referrer_name" value="">
+                <input type="hidden" name="zf_redirect_url" value="">
+                <input type="hidden" name="zc_gad" value="">
+      
+                <h2>شاركني فكرتك</h2>
+      
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني <em>*</em></label>
+                    <input type="email" 
+                           id="email"
+                           name="Email" 
+                           maxlength="255" 
+                           fieldType="9" 
+                           placeholder="your@email.com" 
+                           required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="firstName">الأسم الأول<em>*</em></label>
+                    <input type="text" 
+                           id="firstName"
+                           name="Name_First" 
+                           maxlength="255" 
+                           fieldType="7"
+                           required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="lastName">العائلة<em>*</em></label>
+                    <input type="text" 
+                           id="lastName"
+                           name="Name_Last" 
+                           maxlength="255" 
+                           fieldType="7"
+                           required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="projectTitle">عنوان المشروع <em>*</em></label>
+                    <input type="text" 
+                           id="projectTitle"
+                           name="SingleLine" 
+                           maxlength="255" 
+                           fieldType="1" 
+                           required>
+                </div>
+      
+                <div class="form-group">
+                    <label for="projectDesc">وصف المشروع <em>*</em></label>
+                    <textarea id="projectDesc"
+                              name="MultiLine" 
+                              maxlength="65535" 
+                              required></textarea>
+                </div>
+      
+                <div class="form-group">
+                    <label for="budget">الميزانية المتوقعة <em>*</em></label>
+                    <div class="currency-input">
+                        <input type="text" 
+                               id="budget"
+                               name="Currency" 
+                               maxlength="50" 
+                               required>
+                        <span class="currency-symbol">﷼</span>
                     </div>
-                    <div class="form-group">
-                        <label for="projectDescription">وصف المشروع</label>
-                        <textarea id="projectDescription" name="projectDescription" rows="5" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="budget">الميزانية المتوقعة</label>
-                        <input type="text" id="budget" name="budget" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="timeline">المدة المتوقعة</label>
-                        <input type="text" id="timeline" name="timeline" required>
-                    </div>
-                    <button type="submit">إرسال فكرة المشروع</button>
-                </form>
-            </div>
+                </div>
+      
+                <div class="form-group">
+                    <label for="dueDate">التاريخ المتوقع للتسليم</label>
+                    <input type="date" 
+                           id="dueDate"
+                           name="Date" 
+                           maxlength="25">
+                </div>
+      
+                <button type="submit">إرسال فكرة المشروع</button>
+            </form autocomplete="off">
         </div>
-    </section>
+      </section>
 
     <footer>
         <div class="container">
@@ -270,18 +235,71 @@
         </div>
     </footer>
 
+    // Remove the existing script and replace it with this:
+
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Wrap in try-catch to handle potential errors
+        try {
+          // Your code here
+          document.querySelector('#contact form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('شكراً لتواصلك! سأرد عليك في أقرب وقت.');
             this.reset();
-        });
-
-        document.getElementById('ideaForm').addEventListener('submit', function(e) {
+          });
+        
+          document.querySelector('#share-idea form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('شكراً لمشاركة فكرة مشروعك! سأراجعها وأتواصل معك قريباً.');
             this.reset();
-        });
-    </script>
+          });
+        } catch (error) {
+          console.error('Error:', error);
+        }
+
+        // Navigation Toggle
+                const navToggle = document.querySelector('.nav-toggle');
+                const nav = document.querySelector('nav');
+
+                if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+                }
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                if (nav.classList.contains('active') && 
+                    !e.target.closest('nav') && 
+                    !e.target.closest('.nav-toggle')) {
+                    nav.classList.remove('active');
+                    navToggle.classList.remove('active');
+                }
+                });
+
+                // Close menu when clicking a link
+                document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+                });
+
+                // Add smooth scroll offset for fixed header
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    const headerOffset = 70;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                });
+                });
+        </script>
 </body>
 </html>
