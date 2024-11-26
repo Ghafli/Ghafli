@@ -289,3 +289,14 @@ color: var(--error);
 font-size: 0.875rem;
 margin-top: var(--spacing-xs);
 }
+
+.error {
+  border-color: var(--error) !important;
+}
+
+.zf-errorMessage {
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
