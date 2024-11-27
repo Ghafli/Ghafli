@@ -300,3 +300,9 @@ margin-top: var(--spacing-xs);
   margin-top: 0.25rem;
   display: none;
 }
+
+/* Add specific styling for contact form errors */
+
+#contactForm .zf-errorMessage {
+  margin-top: var(--spacing-xs);
+}
