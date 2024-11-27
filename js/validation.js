@@ -1,9 +1,10 @@
 // Form Validation Script
+'use strict';
 const ValidationScript = {
   // Regular expressions for validation
   patterns: {
       email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-      phone: /^[0-9]{10}$/,
+      phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
       currency: /^\d+(\.\d{1,2})?$/,
       name: /^[\u0600-\u06FFa-zA-Z\s]{2,30}$/,  // Supports Arabic and English names
   },
