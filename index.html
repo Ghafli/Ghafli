@@ -104,45 +104,237 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
-    <section id="contact" class="contact-form">
-        <div class="container">
-            <form action="https://forms.zohopublic.com/ahmedgha1/form/Contactme/formperma/tSQ2Ijeq2VxH8f01fcOCn3HfVKudEZcC3qbEYhL74e4/htmlRecords/submit" 
-                  method="POST" 
-                  id="contactForm" 
-                  onSubmit="return zf_ValidateAndSubmit();" 
-                  accept-charset="UTF-8">
+      <!-- Contact Form Section -->
+  <section id="contact" class="contact-form">
+      <div class="container">
+          <form action='https://forms.zohopublic.com/ahmedgha1/form/Contactme/formperma/tSQ2Ijeq2VxH8f01fcOCn3HfVKudEZcC3qbEYhL74e4/htmlRecords/submit' 
+                name='contactForm' 
+                id='contactForm' 
+                method='POST' 
+                onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' 
+                accept-charset='UTF-8' 
+                enctype='multipart/form-data'>
 
-                <h2>اتصل بي</h2>
+              <!-- Hidden Fields -->
+              <input type="hidden" name="zf_referrer_name" value="">
+              <input type="hidden" name="zf_redirect_url" value="">
+              <input type="hidden" name="zc_gad" value="">
 
-                <div class="form-group">
-                    <label for="contactEmail">البريد الإلكتروني <em class="required">*</em></label>
-                    <input type="email" id="contactEmail" name="Email" placeholder="youremail@example.com" required>
-                    <p id="contact_Email_error" class="zf-errorMessage">البريد الإلكتروني غير صحيح</p>
-                </div>
+              <h2>اتصل بي</h2>
 
-                <div class="form-group">
-                    <label for="contactPhone">رقم الاتصال</label>
-                    <input type="tel" id="contactPhone" name="PhoneNumber_countrycode" placeholder="050-001-2344">
-                    <p id="contact_PhoneNumber_error" class="zf-errorMessage">رقم الهاتف غير صحيح</p>
-                </div>
+              <div class="form-group">
+                  <label for="contactEmail">البريد الإلكتروني <em class="required">*</em></label>
+                  <input type="email" 
+                         id="contactEmail"
+                         name="Email" 
+                         maxlength="255" 
+                         fieldType="9" 
+                         placeholder="youremail@example.com" 
+                         required>
+                  <p id="contact_Email_error" class="zf-errorMessage" style="display:none;">البريد الإلكتروني غير صحيح</p>
+              </div>
 
-                <div class="form-group">
-                    <label for="contactFirstName">الأسم الأول <em class="required">*</em></label>
-                    <input type="text" id="contactFirstName" name="Name_First" required>
-                    <p id="contact_Name_First_error" class="zf-errorMessage">الاسم غير صحيح</p>
-                </div>
+              <div class="form-group">
+                  <label for="contactPhone">رقم الاتصال</label>
+                  <input type="tel" 
+                         id="contactPhone"
+                         name="PhoneNumber_countrycode" 
+                         maxlength="20" 
+                         fieldType="11" 
+                         placeholder="050-001-2344">
+                  <p id="contact_PhoneNumber_error" class="zf-errorMessage" style="display:none;">رقم الهاتف غير صحيح</p>
+              </div>
 
-                <div class="form-group">
-                    <label for="contactMessage">الرسالة <em class="required">*</em></label>
-                    <textarea id="contactMessage" name="MultiLine" placeholder="اكتب رسالتك هنا" required></textarea>
-                    <p id="contact_MultiLine_error" class="zf-errorMessage">الرجاء إدخال 10 كلمات على الأقل</p>
-                </div>
+              <div class="form-group">
+                  <label for="contactFirstName">الأسم الأول <em class="required">*</em></label>
+                  <input type="text" 
+                         id="contactFirstName"
+                         name="Name_First" 
+                         maxlength="255" 
+                         fieldType="7" 
+                         required>
+                  <p id="contact_Name_First_error" class="zf-errorMessage" style="display:none;">الاسم غير صحيح</p>
+              </div>
 
-                <button type="submit">إرسال الرسالة</button>
-            </form>
-        </div>
-    </section>
+              <div class="form-group">
+                  <label for="contactLastName">العائلة <em class="required">*</em></label>
+                  <input type="text" 
+                         id="contactLastName"
+                         name="Name_Last" 
+                         maxlength="255" 
+                         fieldType="7" 
+                         required>
+                  <p id="contact_Name_Last_error" class="zf-errorMessage" style="display:none;">الاسم غير صحيح</p>
+              </div>
+
+              <div class="form-group">
+                  <label for="contactMessage">الرسالة <em class="required">*</em></label>
+                  <textarea id="contactMessage"
+                            name="MultiLine" 
+                            maxlength="65535" 
+                            placeholder="اكتب رسالتك هنا على ان لا تقل عن عشرة كلمات"
+                            required></textarea>
+                  <p id="contact_MultiLine_error" class="zf-errorMessage" style="display:none;">الرجاء إدخال 10 كلمات على الأقل</p>
+              </div>
+
+              <button type="submit">إرسال الرسالة</button>
+          </form>
+      </div>
+  </section>
+
+  <!-- Share Idea Form Section -->
+  <section id="share-idea" class="zf-templateWrapper">
+      <div class="container">
+          <ul class="zf-tempHeadBdr">
+              <li class="zf-tempHeadContBdr">
+                  <h2 class="zf-frmTitle"><em>شاركني فكرتك</em></h2>
+                  <p class="zf-frmDesc">شاركني فكرة مشروعك وسأساعدك في تحقيقها</p>
+                  <div class="zf-clearBoth"></div>
+              </li>
+          </ul>
+
+          <div class="zf-subContWrap zf-topAlign">
+              <form action='https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit' 
+                    name='form' 
+                    method='POST' 
+                    onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();' 
+                    accept-charset='UTF-8' 
+                    enctype='multipart/form-data' 
+                    id='form'>
+
+                  <!-- Hidden Fields -->
+                  <input type="hidden" name="zf_referrer_name" value="">
+                  <input type="hidden" name="zf_redirect_url" value="">
+                  <input type="hidden" name="zc_gad" value="">
+
+                  <ul>
+                      <!-- Email Field -->
+                      <li class="zf-tempFrmWrapper zf-large">
+                          <label class="zf-labelName">
+                              البريد الإلكتروني
+                              <em class="zf-important">*</em>
+                          </label>
+                          <div class="zf-tempContDiv">
+                              <span>
+                                  <input fieldType=9 
+                                         type="text" 
+                                         maxlength="255" 
+                                         name="Email" 
+                                         checktype="c5" 
+                                         value="" 
+                                         placeholder="your@email.com"/>
+                              </span>
+                              <p id="Email_error" class="zf-errorMessage" style="display:none;">البريد الإلكتروني غير صحيح</p>
+                          </div>
+                          <div class="zf-clearBoth"></div>
+                      </li>
+
+                      <!-- Name Fields -->
+                      <li class="zf-tempFrmWrapper zf-name zf-namelarge">
+                          <label class="zf-labelName">
+                              الأسم الأول
+                              <em class="zf-important">*</em>
+                          </label>
+                          <div class="zf-tempContDiv zf-twoType">
+                              <div class="zf-nameWrapper">
+                                  <span>
+                                      <input type="text" 
+                                             maxlength="255" 
+                                             name="Name_First" 
+                                             fieldType=7 
+                                             placeholder=""/>
+                                  </span>
+                                <p id="Name_First_error" class="zf-errorMessage" style="display:none;">الاسم غير صحيح</p>
+                              </div> 
+                              <div class="zf-nameWrapper">
+                                  <span>
+                                      <label class="zf-labelName">
+                                          العائلة
+                                          <em class="zf-important">*</em>
+                                      </label>
+                                      <input type="text" 
+                                             maxlength="255" 
+                                             name="Name_Last" 
+                                             fieldType=7 
+                                             placeholder=""/>
+                                  </span>
+                              </div>
+                              <p id="Name_Last_error" class="zf-errorMessage" style="display:none;">الاسم غير صحيح</p>
+                          </div>
+                          <div class="zf-clearBoth"></div>
+                      </li>
+
+                      <!-- Project Title -->
+                      <li class="zf-tempFrmWrapper zf-large">
+                          <label class="zf-labelName">
+                              عنوان المشروع
+                              <em class="zf-important">*</em>
+                          </label>
+                          <div class="zf-tempContDiv">
+                              <span>
+                                  <input type="text" 
+                                         name="SingleLine" 
+                                         checktype="c1" 
+                                         value="" 
+                                         maxlength="255" 
+                                         fieldType=1 
+                                         placeholder=""/>
+                              </span>
+                              <p id="SingleLine_error" class="zf-errorMessage" style="display:none;">هذا الحقل مطلوب</p>
+                          </div>
+                          <div class="zf-clearBoth"></div>
+                      </li>
+
+                      <!-- Project Description -->
+                      <li class="zf-tempFrmWrapper zf-large">
+                          <label class="zf-labelName">
+                              وصف المشروع
+                              <em class="zf-important">*</em>
+                          </label>
+                          <div class="zf-tempContDiv">
+                              <span>
+                                  <textarea name="MultiLine" 
+                                            checktype="c1" 
+                                            maxlength="65535" 
+                                            placeholder=""></textarea>
+                              </span>
+                              <p id="MultiLine_error" class="zf-errorMessage" style="display:none;">الرجاء إدخال 10 كلمات على الأقل</p>
+                          </div>
+                          <div class="zf-clearBoth"></div>
+                      </li>
+
+                      <!-- Expected Budget -->
+                      <li class="zf-tempFrmWrapper zf-currency zf-clarge">
+                          <label class="zf-labelName">
+                              الميزانية المتوقعة
+                              <em class="zf-important">*</em>
+                          </label>
+                          <div class="zf-tempContDiv">
+                              <div>
+                                  <input type="text" 
+                                         name="Currency" 
+                                         checktype="c3" 
+                                         value="" 
+                                         maxlength="50" 
+                                         placeholder=""/>
+                                  <span>SAR</span>
+                              </div>
+                              <p id="Currency_error" class="zf-errorMessage" style="display:none;">الرجاء إدخال قيمة صحيحة</p>
+                          </div>
+                          <div class="zf-clearBoth"></div>
+                      </li>
+                  </ul>
+
+                  <!-- Submit Button -->
+                  <ul>
+                      <li class="zf-fmFooter">
+                          <button class="zf-submitColor">إرسال فكرة المشروع</button>
+                      </li>
+                  </ul>
+              </form>
+          </div>
+      </div>
+  </section>
 
     <!-- Footer Section -->
     <footer>
