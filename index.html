@@ -373,75 +373,76 @@
     </div>
 </footer>
 
-// Loading Animation
-window.addEventListener('load', () => {
-    document.getElementById('loading').style.display = 'none';
-});
-
-// Smooth Scroll with Offset
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        const headerOffset = 100;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-        });
-    });
-});
-
-// Intersection Observer for Animations
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-        }
-    });
-}, {
-    threshold: 0.1
-});
-
-document.querySelectorAll('.skill-card, .service-item').forEach((el) => observer.observe(el));
-
-// Navbar Scroll Effect
-const navbar = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-      
-  <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Ghafli - مطور ويب مستقل",
-  "description": "مطور ويب مستقل متخصص في تطوير المواقع الإلكترونية والتطبيقات",
-  "priceRange": "$",
-  "knowsAbout": ["Web Development", "Frontend Development", "PHP Development", "Responsive Design"],
-  "knowsLanguage": ["ar", "en"],
-  "makesOffer": {
-    "@type": "Offer",
-    "itemOffered": [
-      {
-        "@type": "Service",
-        "name": "Web Development",
-        "description": "Custom website development and design services"
-      },
-      {
-        "@type": "Service",
-        "name": "Frontend Development",
-        "description": "Responsive and interactive user interface development"
-      }
-    ]
-  }
-}
+    <script>
+            // Loading Animation
+            window.addEventListener('load', () => {
+                document.getElementById('loading').style.display = 'none';
+            });
+            
+            // Smooth Scroll with Offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    const headerOffset = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                });
+            });
+            
+            // Intersection Observer for Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.skill-card, .service-item').forEach((el) => observer.observe(el));
+            
+            // Navbar Scroll Effect
+            const navbar = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+                  
+              <script type="application/ld+json">
+            {
+              "@context": "http://schema.org",
+              "@type": "ProfessionalService",
+              "name": "Ghafli - مطور ويب مستقل",
+              "description": "مطور ويب مستقل متخصص في تطوير المواقع الإلكترونية والتطبيقات",
+              "priceRange": "$",
+              "knowsAbout": ["Web Development", "Frontend Development", "PHP Development", "Responsive Design"],
+              "knowsLanguage": ["ar", "en"],
+              "makesOffer": {
+                "@type": "Offer",
+                "itemOffered": [
+                  {
+                    "@type": "Service",
+                    "name": "Web Development",
+                    "description": "Custom website development and design services"
+                  },
+                  {
+                    "@type": "Service",
+                    "name": "Frontend Development",
+                    "description": "Responsive and interactive user interface development"
+                  }
+                ]
+              }
+            }
 </script>
 </body>
 </html>
