@@ -181,21 +181,9 @@ nav a:hover {
 }
 
 /* ==========================
-   Contact Form
+   Form Styles (Shared for Contact and Share Idea Forms)
 ========================== */
-.contact-form {
-    background: var(--primary-light);
-    padding: var(--spacing-lg) 0;
-}
-
-.contact-form h2 {
-    text-align: center;
-    font-size: 2rem;
-    color: var(--primary);
-    margin-bottom: var(--spacing-md);
-}
-
-.contact-form form {
+form {
     background: var(--white);
     padding: var(--spacing-lg);
     border-radius: var(--radius-md);
@@ -204,18 +192,25 @@ nav a:hover {
     margin: 0 auto;
 }
 
-.contact-form .form-group {
+form h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary);
     margin-bottom: var(--spacing-md);
 }
 
-.contact-form label {
+form .form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+form label {
     display: block;
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
     color: var(--text-dark);
 }
 
-.contact-form input, .contact-form textarea {
+form input, form textarea, form select {
     width: 100%;
     padding: var(--spacing-sm);
     border: 1px solid var(--gray);
@@ -224,13 +219,18 @@ nav a:hover {
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
+form input:focus, form textarea:focus, form select:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
     outline: none;
 }
 
-.contact-form button {
+form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+form button {
     background: var(--gradient-primary);
     color: var(--white);
     padding: var(--spacing-sm) var(--spacing-md);
@@ -239,12 +239,45 @@ nav a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    width: 100%;
+    font-size: 1rem;
 }
 
-.contact-form button:hover {
+form button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
+
+form .zf-errorMessage {
+    color: var(--error);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-xs);
+    display: none; /* Hidden by default */
+}
+
+/* ==========================
+   Shared Form Section Styles
+========================== */
+.contact-form, .zf-templateWrapper {
+    padding: var(--spacing-lg) 0;
+    background: var(--primary-light);
+}
+
+.contact-form h2, .zf-templateWrapper h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-form p, .zf-templateWrapper p {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+
 
 /* ==========================
    Services Section
@@ -324,15 +357,15 @@ footer .social-links a:hover {
 }
 
 /* ==========================
-   Responsive Design
+   Responsive Design for Forms
 ========================== */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        gap: var(--spacing-sm);
+    form {
+        padding: var(--spacing-md);
     }
 
-    .skills-grid, .services-grid {
-        grid-template-columns: 1fr;
+    form button {
+        font-size: 0.9rem;
     }
+}
 }
