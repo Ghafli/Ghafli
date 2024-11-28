@@ -63,17 +63,75 @@ margin: 0 auto;
 padding: 0 var(--spacing-sm);
 }
 
-/* Header */
-header {
-background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-color: var(--white);
-padding: var(--spacing-xl) 0;
-text-align: center;
+/* Enhanced Header Styles */
+
+header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
 }
 
-header h1 {
-font-size: 2.5rem;
-margin-bottom: var(--spacing-xs);
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.2;
+}
+
+header .subtitle {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--gray-100);
+}
+
+header .expertise {
+    font-size: 1.1rem;
+    color: var(--primary-light);
+    font-weight: 500;
+}
+
+/* Services Section Styles */
+.services {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--white);
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--gray-800);
+    font-size: 2rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md);
+}
+
+.service-item {
+    background: var(--gray-50);
+    padding: var(--spacing-lg);
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.service-item h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+}
+
+.service-item p {
+    color: var(--gray-600);
+    line-height: 1.6;
 }
 
 /* Navigation */
@@ -107,7 +165,19 @@ color: var(--primary);
 background-color: var(--gray-100);
 }
 
+
+/* Enhanced Skills Section */
+.skills .section-intro {
+    text-align: center;
+    color: var(--gray-600);
+    margin-bottom: var(--spacing-lg);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Skills Section */
+
 .skills {
 padding: var(--spacing-xl) 0;
 }
@@ -192,12 +262,67 @@ background-color: var(--primary-dark);
 color: var(--error);
 }
 
-/* Footer */
-footer {
-background: var(--gray-800);
-color: var(--white);
-padding: var(--spacing-lg) 0;
-text-align: center;
+/* Enhanced Footer Styles */
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-sm) 0;
+}
+
+.footer-links a {
+    color: var(--gray-300);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.social-links a {
+    color: var(--gray-300);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-light);
+}
+
+/* Bilingual Text Support */
+.bilingual {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.bilingual-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bilingual-text span:first-child {
+    text-align: right;
+}
+
+.bilingual-text span:last-child {
+    text-align: left;
+    color: var(--gray-500);
 }
 
 /* Mobile Navigation */
@@ -254,7 +379,32 @@ nav.active ul {
   padding: var(--spacing-md);
 }
 }
+/* Responsive Enhancements */
 
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .bilingual-text {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .bilingual-text span:first-child,
+    .bilingual-text span:last-child {
+        text-align: center;
+    }
+}
 /* Animations */
 @keyframes fadeIn {
 from { opacity: 0; transform: translateY(20px); }
@@ -305,4 +455,29 @@ margin-top: var(--spacing-xs);
 
 #contactForm .zf-errorMessage {
   margin-top: var(--spacing-xs);
+}
+
+/* SEO Schema Markup Styles */
+[itemtype="http://schema.org/ProfessionalService"] {
+    display: block;
+}
+
+/* Accessibility Improvements */
+:focus {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
 }
