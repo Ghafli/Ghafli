@@ -38,14 +38,34 @@
 </head>
 <body>
   <header>
-    <div class="container">
-        <h1>مطور ويب مستقل | Freelance Web Developer</h1>
-        <p class="subtitle">خبير في تطوير المواقع الإلكترونية والتطبيقات المتجاوبة | Expert in Responsive Web Development</p>
-        <p class="expertise">HTML5 • CSS3 • JavaScript • PHP • WordPress • Laravel</p>
+    <!-- 
+              <div class="container">
+                <h1>مطور ويب مستقل | Freelance Web Developer</h1>
+                <p class="subtitle">خبير في تطوير المواقع الإلكترونية والتطبيقات المتجاوبة | Expert in Responsive Web Development</p>
+                <p class="expertise">HTML5 • CSS3 • JavaScript • PHP • WordPress • Laravel</p>
+            </div>
+          </header>
+     --> 
+    <!-- Add this in your header section -->
+<div class="header-content">
+    <div class="container">
+        <div class="typing-animation">
+            <h1>مطور ويب مستقل | Freelance Web Developer</h1>
+        </div>
+        <p class="subtitle">خبير في تطوير المواقع الإلكترونية والتطبيقات المتجاوبة</p>
+        <div class="tech-stack">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+            <span>PHP</span>
+            <span>WordPress</span>
+            <span>Laravel</span>
+        </div>
     </div>
-  </header>
+</div>
 
   <nav>
+      
       <button class="nav-toggle" aria-label="Toggle navigation">
           <span></span>
       </button>
@@ -353,52 +373,50 @@
     </div>
 </footer>
 
-  <script>
-      // Navigation Toggle
-      const navToggle = document.querySelector('.nav-toggle');
-      const nav = document.querySelector('nav');
+// Loading Animation
+window.addEventListener('load', () => {
+    document.getElementById('loading').style.display = 'none';
+});
 
-      if (navToggle) {
-          navToggle.addEventListener('click', () => {
-              nav.classList.toggle('active');
-              navToggle.classList.toggle('active');
-          });
-      }
+// Smooth Scroll with Offset
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        const headerOffset = 100;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-          if (nav.classList.contains('active') && 
-              !e.target.closest('nav') && 
-              !e.target.closest('.nav-toggle')) {
-              nav.classList.remove('active');
-              navToggle.classList.remove('active');
-          }
-      });
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    });
+});
 
-      // Close menu when clicking a link
-      document.querySelectorAll('nav a').forEach(link => {
-          link.addEventListener('click', () => {
-              nav.classList.remove('active');
-              navToggle.classList.remove('active');
-          });
-      });
+// Intersection Observer for Animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+        }
+    });
+}, {
+    threshold: 0.1
+});
 
-      // Add smooth scroll offset for fixed header
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-              e.preventDefault();
-              const target = document.querySelector(this.getAttribute('href'));
-              const headerOffset = 70;
-              const elementPosition = target.getBoundingClientRect().top;
-              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+document.querySelectorAll('.skill-card, .service-item').forEach((el) => observer.observe(el));
 
-              window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth"
-              });
-          });
-      });
-  </script>
+// Navbar Scroll Effect
+const navbar = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+      
   <script type="application/ld+json">
 {
   "@context": "http://schema.org",
