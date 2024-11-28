@@ -230,3 +230,176 @@ footer {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+/* General Mobile Enhancements */
+@media (max-width: 768px) {
+    /* Header */
+    header {
+        padding: var(--spacing-lg) var(--spacing-sm);
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+
+    header .subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    header .expertise {
+        font-size: 0.9rem;
+    }
+
+    /* Navigation */
+    nav ul {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 0;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        right: var(--spacing-sm);
+        top: var(--spacing-sm);
+    }
+
+    .nav-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--gray-800);
+        margin: 5px 0;
+        transition: 0.3s;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Skills Section */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .skill-card {
+        padding: var(--spacing-md);
+    }
+
+    .skill-card i {
+        font-size: 2.5rem;
+    }
+
+    /* Services Section */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .service-item {
+        padding: var(--spacing-md);
+    }
+
+    /* Contact Form */
+    .contact-form {
+        padding: var(--spacing-md);
+    }
+
+    .form-group {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    input, textarea {
+        font-size: 0.9rem;
+        padding: var(--spacing-xs);
+    }
+
+    button {
+        font-size: 1rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .social-links {
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Small Mobile Enhancements (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Header */
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header .subtitle {
+        font-size: 0.9rem;
+    }
+
+    header .expertise {
+        font-size: 0.8rem;
+    }
+
+    /* Navigation */
+    nav ul {
+        gap: var(--spacing-xs);
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Skills Section */
+    .skill-card i {
+        font-size: 2rem;
+    }
+
+    /* Contact Form */
+    .contact-form {
+        padding: var(--spacing-sm);
+    }
+
+    input, textarea {
+        font-size: 0.8rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer-links {
+        gap: var(--spacing-xs);
+    }
+
+    .social-links {
+        gap: var(--spacing-xs);
+    }
+}
