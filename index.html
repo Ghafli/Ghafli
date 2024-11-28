@@ -106,6 +106,7 @@
 </section>
 
   <!-- Contact Form Section -->
+<!--
   <section id="contact" class="contact-form">
       <div class="container">
           <form action='https://forms.zohopublic.com/ahmedgha1/form/Contactme/formperma/tSQ2Ijeq2VxH8f01fcOCn3HfVKudEZcC3qbEYhL74e4/htmlRecords/submit' 
@@ -182,8 +183,48 @@
           </form>
       </div>
   </section>
+-->
+      <section id="contact" class="contact-form">
+    <div class="container">
+        <form action="https://forms.zohopublic.com/ahmedgha1/form/Contactme/formperma/tSQ2Ijeq2VxH8f01fcOCn3HfVKudEZcC3qbEYhL74e4/htmlRecords/submit" 
+              method="POST" 
+              id="contactForm" 
+              onSubmit="return zf_ValidateAndSubmit();" 
+              accept-charset="UTF-8">
+
+            <h2>اتصل بي</h2>
+
+            <div class="form-group">
+                <label for="contactEmail">البريد الإلكتروني <em class="required">*</em></label>
+                <input type="email" id="contactEmail" name="Email" placeholder="youremail@example.com" required>
+                <p id="contact_Email_error" class="zf-errorMessage">البريد الإلكتروني غير صحيح</p>
+            </div>
+
+            <div class="form-group">
+                <label for="contactPhone">رقم الاتصال</label>
+                <input type="tel" id="contactPhone" name="PhoneNumber_countrycode" placeholder="050-001-2344">
+                <p id="contact_PhoneNumber_error" class="zf-errorMessage">رقم الهاتف غير صحيح</p>
+            </div>
+
+            <div class="form-group">
+                <label for="contactFirstName">الأسم الأول <em class="required">*</em></label>
+                <input type="text" id="contactFirstName" name="Name_First" required>
+                <p id="contact_Name_First_error" class="zf-errorMessage">الاسم غير صحيح</p>
+            </div>
+
+            <div class="form-group">
+                <label for="contactMessage">الرسالة <em class="required">*</em></label>
+                <textarea id="contactMessage" name="MultiLine" placeholder="اكتب رسالتك هنا" required></textarea>
+                <p id="contact_MultiLine_error" class="zf-errorMessage">الرجاء إدخال 10 كلمات على الأقل</p>
+            </div>
+
+            <button type="submit">إرسال الرسالة</button>
+        </form>
+    </div>
+</section>
 
   <!-- Share Idea Form Section -->
+<!--
   <section id="share-idea" class="zf-templateWrapper">
       <div class="container">
           <ul class="zf-tempHeadBdr">
@@ -353,6 +394,52 @@
                 <p>تحسين ظهور موقعك في نتائج البحث | Improve your search engine ranking</p>
             </div>
         </div>
+    </div>
+</section>
+-->
+      <section id="share-idea" class="zf-templateWrapper">
+    <div class="container">
+        <form action="https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit" 
+              method="POST" 
+              id="shareIdeaForm" 
+              onSubmit="return zf_ValidateAndSubmit();" 
+              accept-charset="UTF-8">
+
+            <h2>شاركني فكرتك</h2>
+            <p>شاركني فكرة مشروعك وسأساعدك في تحقيقها</p>
+
+            <div class="form-group">
+                <label for="ideaEmail">البريد الإلكتروني <em class="required">*</em></label>
+                <input type="email" id="ideaEmail" name="Email" placeholder="youremail@example.com" required>
+                <p id="idea_Email_error" class="zf-errorMessage">البريد الإلكتروني غير صحيح</p>
+            </div>
+
+            <div class="form-group">
+                <label for="ideaFirstName">الأسم الأول <em class="required">*</em></label>
+                <input type="text" id="ideaFirstName" name="Name_First" required>
+                <p id="idea_Name_First_error" class="zf-errorMessage">الاسم غير صحيح</p>
+            </div>
+
+            <div class="form-group">
+                <label for="ideaTitle">عنوان المشروع <em class="required">*</em></label>
+                <input type="text" id="ideaTitle" name="SingleLine" placeholder="عنوان المشروع" required>
+                <p id="idea_Title_error" class="zf-errorMessage">هذا الحقل مطلوب</p>
+            </div>
+
+            <div class="form-group">
+                <label for="ideaDescription">وصف المشروع <em class="required">*</em></label>
+                <textarea id="ideaDescription" name="MultiLine" placeholder="اكتب وصف المشروع هنا" required></textarea>
+                <p id="idea_Description_error" class="zf-errorMessage">الرجاء إدخال 10 كلمات على الأقل</p>
+            </div>
+
+            <div class="form-group">
+                <label for="ideaBudget">الميزانية المتوقعة <em class="required">*</em></label>
+                <input type="text" id="ideaBudget" name="Currency" placeholder="SAR" required>
+                <p id="idea_Budget_error" class="zf-errorMessage">الرجاء إدخال قيمة صحيحة</p>
+            </div>
+
+            <button type="submit">إرسال فكرة المشروع</button>
+        </form>
     </div>
 </section>
 
