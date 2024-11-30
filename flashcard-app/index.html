@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Learning App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-brand">Flashcard App</div>
+            <div class="nav-menu">
+                <button id="profileBtn" class="nav-btn hidden">My Profile</button>
+                <button id="logoutBtn" class="nav-btn hidden">Logout</button>
+            </div>
+        </nav>
+
+        <!-- Authentication Forms -->
+        <div id="authForms">
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="form-footer">
+                    Don't have an account? <a href="#" onclick="showRegisterForm()">Register</a>
+                    <br>
+                    <a href="#" onclick="showForgotPasswordForm()" class="forgot-password-link">Forgot Password?</a>
+                </p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form hidden">
+                <h2>Register</h2>
+                <div class="form-group">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+                <p class="form-footer">
+                    Already have an account? <a href="#" onclick="showLoginForm()">Login</a>
+                </p>
+            </form>
+
+            <!-- Forgot Password Form -->
+            <form id="forgotPasswordForm" class="auth-form hidden">
+                <h2>Reset Password</h2>
+                <div class="form-group">
+                    <label for="resetEmail">Email</label>
+                    <input type="email" id="resetEmail" required>
+                </div>
+                <button type="submit" class="btn-primary">Send Reset Link</button>
+                <p class="form-footer">
+                    <a href="#" onclick="showLoginForm()">Back to Login</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="main-content hidden">
+            <!-- User Dashboard -->
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <h2>My Flashcards</h2>
+                    <div class="dashboard-actions">
+                        <button id="addCategoryBtn" class="btn-primary">Add Category</button>
+                        <button id="addFlashcardBtn" class="btn-primary">Add Flashcard</button>
+                    </div>
+                </div>
+
+                <!-- Categories Section -->
+                <div class="categories-section">
+                    <h3>My Categories</h3>
+                    <div id="categoriesList" class="categories-grid"></div>
+                </div>
+
+                <!-- Study Section -->
+                <div class="study-section">
+                    <div class="study-controls">
+                        <select id="categorySelect" class="form-control">
+                            <option value="">Select Category</option>
+                        </select>
+                        <button id="startStudyBtn" class="btn-primary">Start Studying</button>
+                    </div>
+
+                    <!-- Flashcard Display -->
+                    <div id="flashcardContainer" class="flashcard-container hidden">
+                        <div id="flashcard" class="flashcard">
+                            <div class="flashcard-inner">
+                                <div class="flashcard-front">
+                                    <p id="wordDisplay" class="word"></p>
+                                </div>
+                                <div class="flashcard-back">
+                                    <p id="definitionDisplay" class="definition"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flashcard-controls">
+                            <button id="prevBtn" class="btn-secondary">Previous</button>
+                            <button id="flipBtn" class="btn-primary">Flip</button>
+                            <button id="nextBtn" class="btn-secondary">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Category Modal -->
+        <div id="addCategoryModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add New Category</h2>
+                <form id="addCategoryForm">
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" id="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryDescription">Description (Optional)</label>
+                        <textarea id="categoryDescription" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Category</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Flashcard Modal -->
+        <div id="addFlashcardModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add New Flashcard</h2>
+                <form id="addFlashcardForm">
+                    <div class="form-group">
+                        <label for="flashcardCategory">Category</label>
+                        <select id="flashcardCategory" required>
+                            <!-- Categories will be loaded dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="flashcardWord">Word/Term</label>
+                        <input type="text" id="flashcardWord" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="flashcardDefinition">Definition</label>
+                        <textarea id="flashcardDefinition" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Flashcard</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
