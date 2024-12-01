@@ -1,0 +1,53 @@
+{
+  "name": "flashcard-app",
+  "version": "1.0.0",
+  "description": "A modern flashcard application for effective learning",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .js,.vue",
+    "lint:fix": "eslint . --ext .js,.vue --fix",
+    "analyze": "vite build --mode analyze",
+    "deploy": "node deploy.js",
+    "deploy:staging": "firebase deploy --only hosting:staging",
+    "deploy:production": "firebase deploy --only hosting:production",
+    "build:production": "vite build --mode production",
+    "preview:production": "vite preview --mode production"
+  },
+  "dependencies": {
+    "@firebase/app": "^0.9.29",
+    "@firebase/auth": "^1.8.1",
+    "@firebase/database": "^1.0.10",
+    "@firebase/firestore": "^4.3.0",
+    "@firebase/storage": "^0.11.2",
+    "axios": "^1.7.8",
+    "bootstrap": "^5.3.0",
+    "firebase": "^9.x.x",
+    "firebase-admin": "^11.x.x",
+    "idb": "^7.1.1",
+    "vue": "^3.3.4",
+    "workbox-webpack-plugin": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.17",
+    "@babel/preset-env": "^7.22.15",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "@vue/test-utils": "^2.4.1",
+    "babel-jest": "^29.7.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "rollup-plugin-visualizer": "^5.9.2",
+    "sass": "^1.66.1",
+    "vite": "^4.4.9",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-pwa": "^0.16.5"
+  }
+}
