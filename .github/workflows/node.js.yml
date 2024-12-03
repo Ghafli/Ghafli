@@ -33,5 +33,3 @@ jobs:
 
     - run: npm ci
     - run: npm run build --if-present
-    # Remove npm test if no test script is defined
-    - run: npm test
