@@ -4,6 +4,7 @@ const nextConfig = {
   experimental: {
     optimizeCss: true
   },
+  output: 'export', // Ensures static export for GitHub Pages
   webpack: (config, { dev, isServer }) => {
     // Optimize production builds
     if (!dev && !isServer) {
@@ -50,6 +51,6 @@ const nextConfig = {
     }
     return config;
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
