@@ -1,243 +1,912 @@
-<!DOCTYPE HTML5>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مطور ويب - Ghafli</title>
-    <!-- Add Arabic font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="مطور ويب محترف متخصص في تطوير المواقع والتطبيقات الإلكترونية">
+    <meta name="keywords" content="مطور ويب, تصميم مواقع, برمجة, تطوير تطبيقات, خدمات ويب">
+    <meta name="author" content="غافلي">
+    <meta name="theme-color" content="#0284c7">
+    <title>غافلي - مطور ويب محترف</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            }
+            .text-gradient {
+                background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .fade-in {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+            [dir="rtl"] .fa-arrow-left {
+                transform: scaleX(-1);
+            }
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Ghafli</h1>
-            <p>مطور ويب متكامل</p>
+<body class="font-cairo bg-gray-50">
+    <header class="min-h-screen relative bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        <!-- Animated Background Pattern -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Geometric Pattern -->
+            <div class="absolute inset-0" style="background-color: #f8fafc;
+                background-image: 
+                    radial-gradient(circle at 100% 150%, #f8fafc 24%, #0284c7 25%, #0284c7 28%, #f8fafc 29%, #f8fafc 36%, #0284c7 36%, #0284c7 40%, transparent 40%, transparent),
+                    radial-gradient(circle at 0 150%, #f8fafc 24%, #0284c7 25%, #0284c7 28%, #f8fafc 29%, #f8fafc 36%, #0284c7 36%, #0284c7 40%, transparent 40%, transparent),
+                    radial-gradient(circle at 50% 100%, #0284c7 10%, #f8fafc 11%, #f8fafc 23%, #0284c7 24%, #0284c7 30%, #f8fafc 31%, #f8fafc 43%, #0284c7 44%, #0284c7 50%, #f8fafc 51%, #f8fafc 63%, #0284c7 64%, #0284c7 71%, transparent 71%, transparent),
+                    radial-gradient(circle at 100% 50%, #0284c7 5%, #f8fafc 6%, #f8fafc 15%, #0284c7 16%, #0284c7 20%, #f8fafc 21%, #f8fafc 30%, #0284c7 31%, #0284c7 35%, #f8fafc 36%, #f8fafc 45%, #0284c7 46%, #0284c7 49%, transparent 50%, transparent),
+                    radial-gradient(circle at 0 50%, #0284c7 5%, #f8fafc 6%, #f8fafc 15%, #0284c7 16%, #0284c7 20%, #f8fafc 21%, #f8fafc 30%, #0284c7 31%, #0284c7 35%, #f8fafc 36%, #f8fafc 45%, #0284c7 46%, #0284c7 49%, transparent 50%, transparent);
+                background-size: 100px 50px;
+                opacity: 0.1;
+            "></div>
+
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white/80"></div>
+
+            <!-- Animated Circles -->
+            <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+
+        <!-- Content Container -->
+        <div class="relative z-10 container mx-auto px-6 py-24 flex flex-col items-center justify-center min-h-screen">
+            <!-- Professional Title Card -->
+            <div class="relative group mb-16">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-200/50 to-primary-300/50 rounded-xl blur-xl transform group-hover:scale-110 transition-transform duration-500"></div>
+                <div class="relative bg-white/80 backdrop-blur-sm border border-primary-100 rounded-xl px-10 py-5 shadow-lg">
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-primary-800 mb-1">مطور ويب محترف</h2>
+                        <p class="text-primary-600 tracking-wide">Professional Web Developer</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="max-w-4xl mx-auto text-center space-y-16">
+                <!-- Heading -->
+                <div class="space-y-6">
+                    <h1>
+                        <span class="block text-6xl md:text-7xl font-black text-gray-800 mb-6">
+                            أهلاً بك في موقعي
+                        </span>
+                        <span class="block text-5xl md:text-6xl font-bold">
+                            <span class="bg-gradient-to-r from-primary-600 via-primary-500 to-primary-400 bg-clip-text text-transparent">
+                                Welcome to My Portfolio
+                            </span>
+                        </span>
+                    </h1>
+
+                    <!-- Description -->
+                    <div class="max-w-2xl mx-auto">
+                        <p class="text-xl text-gray-600 leading-relaxed mb-3">
+                            أقدم حلولاً رقمية مبتكرة تجمع بين التصميم الجذاب والأداء العالي
+                        </p>
+                        <p class="text-lg text-gray-500 leading-relaxed">
+                            Creating innovative digital solutions that combine attractive design with high performance
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- Contact Button -->
+                    <a href="#contact" class="group relative">
+                        <div class="absolute inset-0 bg-primary-600/20 rounded-xl blur-lg transform group-hover:scale-110 transition-transform duration-300"></div>
+                        <div class="relative bg-primary-600 text-white px-10 py-4 rounded-xl transform group-hover:-translate-y-1 transition-all duration-300">
+                            <span class="block text-xl font-bold mb-1">تواصل معي</span>
+                            <span class="block text-sm opacity-90">Contact Me</span>
+                        </div>
+                    </a>
+
+                    <!-- Portfolio Button -->
+                    <a href="#portfolio" class="group relative">
+                        <div class="absolute inset-0 bg-primary-50 rounded-xl blur-lg transform group-hover:scale-110 transition-transform duration-300"></div>
+                        <div class="relative bg-white border-2 border-primary-600 text-primary-600 px-10 py-4 rounded-xl transform group-hover:-translate-y-1 transition-all duration-300">
+                            <span class="block text-xl font-bold mb-1">معرض أعمالي</span>
+                            <span class="block text-sm">My Portfolio</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+                <a href="#ask-me" class="group flex flex-col items-center gap-2">
+                    <span class="text-gray-500 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Scroll Down
+                    </span>
+                    <div class="relative w-6 h-10 border-2 border-primary-300 rounded-full p-1">
+                        <div class="w-2 h-2 bg-primary-500 rounded-full animate-scroll"></div>
+                    </div>
+                </a>
+            </div>
         </div>
     </header>
 
-    <nav>
-        <button class="nav-toggle" aria-label="Toggle navigation">
-            <span></span>
-          </button>
-        <ul>
-            <li><a href="#ask-me">مهاراتي</a></li>
-            <li><a href="#contact">اتصل بي</a></li>
-            <li><a href="#share-idea">شاركني فكرتك</a></li>
-        </ul>
-    </nav>
+    <style>
+        @keyframes scroll {
+            0% { transform: translateY(0); }
+            75% { transform: translateY(24px); opacity: 0; }
+            76% { transform: translateY(0); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-scroll {
+            animation: scroll 2s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+        }
+    </style>
 
-    <section id="ask-me" class="skills">
-        <div class="container">
-            <h2>خبراتي</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fab fa-html5"></i>
-                    <h3>HTML5</h3>
-                    <p>تصميم صفحات ويب حديثة</p>
+    <section id="ask-me" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="inline-block px-4 py-2 bg-primary-50 text-primary-600 rounded-full text-sm font-semibold mb-4">
+                    <span class="block">خبراتي</span>
+                    <span class="block text-[0.8em] mt-1">My Expertise</span>
+                </span>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <span class="block">المهارات والتقنيات</span>
+                    <span class="block text-[0.8em] mt-2">Skills & Technologies</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <span class="block">مجموعة من التقنيات والأدوات التي أتقنها لتطوير حلول رقمية متكاملة</span>
+                    <span class="block text-[0.8em] mt-1">A comprehensive set of technologies and tools I master for developing integrated digital solutions</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Frontend -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                    <div class="text-primary-600 mb-4 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <span class="block">تطوير الواجهات</span>
+                        <span class="block text-[0.8em] mt-1">Frontend Development</span>
+                    </h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>HTML5 / CSS3 / JavaScript</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>React.js / Vue.js</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>Tailwind CSS / Bootstrap</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="skill-card">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>CSS3</h3>
-                    <p>تصميم متجاوب وحركات</p>
+
+                <!-- Backend -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                    <div class="text-primary-600 mb-4 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-server text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <span class="block">تطوير الخلفية</span>
+                        <span class="block text-[0.8em] mt-1">Backend Development</span>
+                    </h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>Node.js / Express.js</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>PHP / Laravel</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>MySQL / MongoDB</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="skill-card">
-                    <i class="fab fa-php"></i>
-                    <h3>PHP</h3>
-                    <p>تطوير الواجه الخلفية</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-js"></i>
-                    <h3>JavaScript</h3>
-                    <p>تطبيقات ويب تفاعلية</p>
+
+                <!-- Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                    <div class="text-primary-600 mb-4 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-tools text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <span class="block">أدوات التطوير</span>
+                        <span class="block text-[0.8em] mt-1">Development Tools</span>
+                    </h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>Git / GitHub</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>VS Code / Docker</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-primary-600"></i>
+                            <span>Figma / Adobe XD</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" calss="contact.from">
-        <div class="container">
-            <form action='https://forms.zohopublic.com/ahmedgha1/form/Contactme/formperma/tSQ2Ijeq2VxH8f01fcOCn3HfVKudEZcC3qbEYhL74e4/htmlRecords/submit' 
-                  name='form' 
-                  id='form' 
-                  method='POST' 
-                  accept-charset='UTF-8' 
-                  enctype='multipart/form-data'>
-      
-                <!-- Hidden Fields -->
-                <input type="hidden" name="zf_referrer_name" value="">
-                <input type="hidden" name="zf_redirect_url" value="">
-                <input type="hidden" name="zc_gad" value="">
-      
-                <h2>اتصل بي</h2>
-      
-                <div class="form-group">
-                    <label for="email">البريد الإلكتروني <em>*</em></label>
-                    <input type="email" 
-                           id="email"
-                           name="Email" 
-                           maxlength="255" 
-                           fieldType="9" 
-                           placeholder="youremail@example.com" 
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="phone">رقم الاتصال</label>
-                    <input type="tel" 
-                           id="phone"
-                           name="PhoneNumber_countrycode" 
-                           phoneFormat="1" 
-                           maxlength="20" 
-                           fieldType="11" 
-                           id="international_PhoneNumber_countrycode" 
-                           placeholder="050-001-2344">
-                </div>
-      
-                <div class="form-group">
-                    <label for="firstName">الأسم الأول <em>*</em></label>
-                    <input type="text" 
-                           id="firstName"
-                           name="Name_First" 
-                           maxlength="255" 
-                           fieldType="7" 
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="lastName">العائلة <em>*</em></label>
-                    <input type="text" 
-                           id="lastName"
-                           name="Name_Last" 
-                           maxlength="255" 
-                           fieldType="7" 
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="message">الرسالة <em>*</em></label>
-                    <textarea id="message"
-                              name="MultiLine" 
-                              maxlength="65535" 
-                              placeholder="اكتب رسالتك هنا على ان لا تقل عن عشرة كلمات"
-                              required></textarea>
-                </div>
-      
-                <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" 
-                           id="website"
-                           name="Website" 
-                           maxlength="2083" 
-                           placeholder="https://example.com">
-                </div>
-      
-                <button type="submit">إرسال الرسالة</button>
-            </form autocomplete="off">
-        </div>
-      </section>
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 bg-primary-50 text-primary-600 rounded-full text-sm font-semibold mb-4">
+                    <span class="block">أعمالي</span>
+                    <span class="block text-[0.8em] mt-1">My Portfolio</span>
+                </span>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <span class="block">مشاريع مختارة</span>
+                    <span class="block text-[0.8em] mt-2">Selected Projects</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <span class="block">نماذج من المشاريع التي قمت بتطويرها لعملاء مختلفين</span>
+                    <span class="block text-[0.8em] mt-1">Examples of projects I've developed for various clients</span>
+                </p>
+            </div>
 
-      <section id="share-idea" calss="share.idea">
-        <div class="container">
-            <form action='https://forms.zohopublic.com/ahmedgha1/form/Untitled/formperma/Um8kgEsB0NSN_JUj0VKjm2LBp4yhk9zHC7iPYyWjB2o/htmlRecords/submit' 
-                  name='form' 
-                  id='form' 
-                  method='POST' 
-                  accept-charset='UTF-8' 
-                  enctype='multipart/form-data'
-                  class="contact-form">
-      
-                <!-- Hidden Fields -->
-                <input type="hidden" name="zf_referrer_name" value="">
-                <input type="hidden" name="zf_redirect_url" value="">
-                <input type="hidden" name="zc_gad" value="">
-      
-                <h2>شاركني فكرتك</h2>
-      
-                <div class="form-group">
-                    <label for="email">البريد الإلكتروني <em>*</em></label>
-                    <input type="email" 
-                           id="email"
-                           name="Email" 
-                           maxlength="255" 
-                           fieldType="9" 
-                           placeholder="your@email.com" 
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="firstName">الأسم الأول<em>*</em></label>
-                    <input type="text" 
-                           id="firstName"
-                           name="Name_First" 
-                           maxlength="255" 
-                           fieldType="7"
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="lastName">العائلة<em>*</em></label>
-                    <input type="text" 
-                           id="lastName"
-                           name="Name_Last" 
-                           maxlength="255" 
-                           fieldType="7"
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="projectTitle">عنوان المشروع <em>*</em></label>
-                    <input type="text" 
-                           id="projectTitle"
-                           name="SingleLine" 
-                           maxlength="255" 
-                           fieldType="1" 
-                           required>
-                </div>
-      
-                <div class="form-group">
-                    <label for="projectDesc">وصف المشروع <em>*</em></label>
-                    <textarea id="projectDesc"
-                              name="MultiLine" 
-                              maxlength="65535" 
-                              required></textarea>
-                </div>
-      
-                <div class="form-group">
-                    <label for="budget">الميزانية المتوقعة <em>*</em></label>
-                    <div class="currency-input">
-                        <input type="text" 
-                               id="budget"
-                               name="Currency" 
-                               maxlength="50" 
-                               required>
-                        <span class="currency-symbol">﷼</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Project 1 -->
+                <div class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400/0284c7/ffffff?text=E-commerce+Project" alt="متجر إلكتروني" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <div class="text-white">
+                                <h3 class="text-lg font-bold mb-2">
+                                    <span class="block">متجر إلكتروني</span>
+                                    <span class="block text-sm mt-1">E-commerce Store</span>
+                                </h3>
+                                <p class="text-sm opacity-90">
+                                    <span class="block">تطوير متجر إلكتروني متكامل</span>
+                                    <span class="block text-[0.8em] mt-1">Full-featured E-commerce Development</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">React.js</span>
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">Node.js</span>
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">MongoDB</span>
+                        </div>
+                        <a href="#" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-2">
+                            <span class="block">عرض التفاصيل</span>
+                            <span class="block text-[0.8em]">View Details</span>
+                            <i class="fas fa-arrow-left text-sm"></i>
+                        </a>
                     </div>
                 </div>
-      
-                <div class="form-group">
-                    <label for="dueDate">التاريخ المتوقع للتسليم</label>
-                    <input type="date" 
-                           id="dueDate"
-                           name="Date" 
-                           maxlength="25">
-                </div>
-      
-                <button type="submit">إرسال فكرة المشروع</button>
-            </form autocomplete="off">
-        </div>
-      </section>
 
-    <footer>
-        <div class="container">
-            <p>جميع الحقوق محفوظة &copy; ٢٠٢٤ Ghafli</p>
+                <!-- Project 2 -->
+                <div class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400/0284c7/ffffff?text=Portfolio+Website" alt="موقع شخصي" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <div class="text-white">
+                                <h3 class="text-lg font-bold mb-2">
+                                    <span class="block">موقع شخصي</span>
+                                    <span class="block text-sm mt-1">Portfolio Website</span>
+                                </h3>
+                                <p class="text-sm opacity-90">
+                                    <span class="block">تصميم وتطوير موقع شخصي احترافي</span>
+                                    <span class="block text-[0.8em] mt-1">Professional Portfolio Design & Development</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">HTML5</span>
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">JavaScript</span>
+                        </div>
+                        <a href="#" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-2">
+                            <span class="block">عرض التفاصيل</span>
+                            <span class="block text-[0.8em]">View Details</span>
+                            <i class="fas fa-arrow-left text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="relative overflow-hidden">
+                        <img src="https://via.placeholder.com/600x400/0284c7/ffffff?text=Corporate+Website" alt="موقع شركة" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <div class="text-white">
+                                <h3 class="text-lg font-bold mb-2">
+                                    <span class="block">موقع شركة</span>
+                                    <span class="block text-sm mt-1">Corporate Website</span>
+                                </h3>
+                                <p class="text-sm opacity-90">
+                                    <span class="block">تطوير موقع شركة مع لوحة تحكم</span>
+                                    <span class="block text-[0.8em] mt-1">Corporate Website with Admin Panel</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">Laravel</span>
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">Vue.js</span>
+                            <span class="px-3 py-1 bg-primary-50 text-primary-600 rounded-full text-sm">MySQL</span>
+                        </div>
+                        <a href="#" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-2">
+                            <span class="block">عرض التفاصيل</span>
+                            <span class="block text-[0.8em]">View Details</span>
+                            <i class="fas fa-arrow-left text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View More Button -->
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-flex flex-col items-center px-8 py-4 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <span class="block">لديك مشروع مماثل؟</span>
+                    <span class="block text-sm mt-1">Have a similar project?</span>
+                    <i class="fas fa-arrow-left text-sm mt-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 text-sm font-semibold text-primary-600 bg-primary-50 rounded-full mb-4">خدماتي</span>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">حلول رقمية متكاملة</h2>
+                <p class="text-lg text-gray-600">أقدم مجموعة متكاملة من الخدمات الرقمية لمساعدتك في تحقيق رؤيتك</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Web Development -->
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                    <div class="text-primary-600 mb-6 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <span class="block">تطوير المواقع</span>
+                        <span class="block text-[0.8em] mt-1">Web Development</span>
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        <span class="block">تصميم وتطوير مواقع احترافية متجاوبة مع جميع الأجهزة</span>
+                        <span class="block text-[0.8em] mt-1">Design and development of professional, responsive websites</span>
+                    </p>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">تصميم عصري وجذاب</span>
+                                <span class="block text-[0.8em]">Modern & Attractive Design</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">متوافق مع جميع الأجهزة</span>
+                                <span class="block text-[0.8em]">Responsive on All Devices</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">تحسين محركات البحث</span>
+                                <span class="block text-[0.8em]">SEO Optimization</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- E-commerce Solutions -->
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                    <div class="text-primary-600 mb-6 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-shopping-cart text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <span class="block">حلول التجارة الإلكترونية</span>
+                        <span class="block text-[0.8em] mt-1">E-commerce Solutions</span>
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        <span class="block">إنشاء متاجر إلكترونية متكاملة مع أنظمة الدفع والشحن</span>
+                        <span class="block text-[0.8em] mt-1">Create integrated online stores with payment & shipping systems</span>
+                    </p>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">أنظمة دفع آمنة</span>
+                                <span class="block text-[0.8em]">Secure Payment Systems</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">إدارة المخزون</span>
+                                <span class="block text-[0.8em]">Inventory Management</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">تقارير المبيعات</span>
+                                <span class="block text-[0.8em]">Sales Reports</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Custom Solutions -->
+                <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                    <div class="text-primary-600 mb-6 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cogs text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <span class="block">حلول مخصصة</span>
+                        <span class="block text-[0.8em] mt-1">Custom Solutions</span>
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        <span class="block">تطوير حلول برمجية مخصصة حسب احتياجات عملك</span>
+                        <span class="block text-[0.8em] mt-1">Develop custom software solutions for your business needs</span>
+                    </p>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">تطوير API</span>
+                                <span class="block text-[0.8em]">API Development</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">أتمتة العمليات</span>
+                                <span class="block text-[0.8em]">Process Automation</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check text-primary-600"></i>
+                            <div>
+                                <span class="block">حلول السحابية</span>
+                                <span class="block text-[0.8em]">Cloud Solutions</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Work Process -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-bold text-center text-gray-800 mb-12">
+                    <span class="block">كيف أعمل؟</span>
+                    <span class="block text-[0.8em] mt-2">How Do I Work?</span>
+                </h3>
+                
+                <div class="relative max-w-5xl mx-auto">
+                    <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary-100 via-primary-300 to-primary-100 transform -translate-y-1/2 z-0"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                        <!-- Step 1 -->
+                        <div class="relative group">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative z-10">
+                                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-primary-50 to-primary-100 rounded-full flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-comments text-primary-600 text-3xl"></i>
+                                </div>
+                                <div class="absolute -top-3 -right-3 w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                                <h4 class="font-bold text-xl mb-3">
+                                    <span class="block text-xl">المناقشة</span>
+                                    <span class="block text-lg text-primary-600 mt-1">Discussion</span>
+                                </h4>
+                                <p class="text-gray-600">
+                                    <span class="block mb-1">فهم متطلباتك وأهدافك</span>
+                                    <span class="block text-sm">Understanding your requirements</span>
+                                </p>
+                                <ul class="mt-4 text-sm text-right space-y-2">
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>تحديد الأهداف</span>
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>دراسة المتطلبات</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative group">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative z-10">
+                                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-primary-50 to-primary-100 rounded-full flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-pencil-ruler text-primary-600 text-3xl"></i>
+                                </div>
+                                <div class="absolute -top-3 -right-3 w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                                <h4 class="font-bold text-xl mb-3">
+                                    <span class="block text-xl">التخطيط</span>
+                                    <span class="block text-lg text-primary-600 mt-1">Planning</span>
+                                </h4>
+                                <p class="text-gray-600">
+                                    <span class="block mb-1">وضع خطة عمل مفصلة</span>
+                                    <span class="block text-sm">Creating a work plan</span>
+                                </p>
+                                <ul class="mt-4 text-sm text-right space-y-2">
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>تصميم الهيكل</span>
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>اختيار التقنيات</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative group">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative z-10">
+                                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-primary-50 to-primary-100 rounded-full flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-code text-primary-600 text-3xl"></i>
+                                </div>
+                                <div class="absolute -top-3 -right-3 w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                                <h4 class="font-bold text-xl mb-3">
+                                    <span class="block text-xl">التطوير</span>
+                                    <span class="block text-lg text-primary-600 mt-1">Development</span>
+                                </h4>
+                                <p class="text-gray-600">
+                                    <span class="block mb-1">تنفيذ المشروع باحترافية</span>
+                                    <span class="block text-sm">Professional implementation</span>
+                                </p>
+                                <ul class="mt-4 text-sm text-right space-y-2">
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>كتابة الكود</span>
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>اختبار الأداء</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative group">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center relative z-10">
+                                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-primary-50 to-primary-100 rounded-full flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-rocket text-primary-600 text-3xl"></i>
+                                </div>
+                                <div class="absolute -top-3 -right-3 w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold">4</div>
+                                <h4 class="font-bold text-xl mb-3">
+                                    <span class="block text-xl">الإطلاق</span>
+                                    <span class="block text-lg text-primary-600 mt-1">Launch</span>
+                                </h4>
+                                <p class="text-gray-600">
+                                    <span class="block mb-1">إطلاق المشروع ومتابعة الأداء</span>
+                                    <span class="block text-sm">Launch and monitor</span>
+                                </p>
+                                <ul class="mt-4 text-sm text-right space-y-2">
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>نشر الموقع</span>
+                                    </li>
+                                    <li class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-check-circle text-primary-500"></i>
+                                        <span>تحليل الأداء</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 text-sm font-semibold text-primary-600 bg-primary-50 rounded-full mb-4">تواصل معي</span>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">دعنا نناقش مشروعك</h2>
+                <p class="text-lg text-gray-600">أنا متحمس للاستماع إلى فكرتك ومساعدتك في تحويلها إلى واقع رقمي مميز</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">معلومات التواصل</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-envelope text-primary-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">البريد الإلكتروني</p>
+                                        <a href="mailto:contact@example.com" class="text-gray-800 hover:text-primary-600">contact@example.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-phone text-primary-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">رقم الهاتف</p>
+                                        <a href="tel:+966500000000" class="text-gray-800 hover:text-primary-600">+966 50 000 0000</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-primary-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">الموقع</p>
+                                        <p class="text-gray-800">الرياض، المملكة العربية السعودية</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="mt-8">
+                                <h4 class="text-lg font-semibold">تابعني على</h4>
+                                <div class="flex gap-4">
+                                    <a href="#" class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 hover:bg-primary-200 transition-colors">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 hover:bg-primary-200 transition-colors">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 hover:bg-primary-200 transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 hover:bg-primary-200 transition-colors">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">أرسل رسالة</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">الاسم</label>
+                                <input type="text" id="name" name="name" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                    placeholder="أدخل اسمك">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني</label>
+                                <input type="email" id="email" name="email" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                    placeholder="example@domain.com">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">الرسالة</label>
+                                <textarea id="message" name="message" rows="4" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                    placeholder="اكتب رسالتك هنا..."></textarea>
+                            </div>
+                            <button type="submit" 
+                                class="w-full bg-primary-600 text-white py-2 px-6 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center gap-2">
+                                <span>إرسال الرسالة</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="share-idea" class="py-20 bg-gradient-custom">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block px-3 py-1 text-sm font-semibold text-primary-600 bg-primary-50 rounded-full mb-4">شاركني فكرتك</span>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">لديك فكرة مشروع؟</h2>
+                    <p class="text-lg text-gray-600">دعني أساعدك في تحويل فكرتك إلى مشروع رقمي ناجح</p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <form id="idea-form" class="space-y-6">
+                        <!-- Personal Information -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="idea-name" class="block text-sm font-medium text-gray-700 mb-1">الاسم</label>
+                                <input type="text" id="idea-name" name="name" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                    placeholder="أدخل اسمك الكامل">
+                            </div>
+                            <div>
+                                <label for="idea-email" class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني</label>
+                                <input type="email" id="idea-email" name="email" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                    placeholder="example@domain.com">
+                            </div>
+                        </div>
+
+                        <!-- Project Details -->
+                        <div>
+                            <label for="idea-title" class="block text-sm font-medium text-gray-700 mb-1">عنوان المشروع</label>
+                            <input type="text" id="idea-title" name="title" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                placeholder="أدخل عنوان مشروعك">
+                        </div>
+
+                        <div>
+                            <label for="idea-type" class="block text-sm font-medium text-gray-700 mb-1">نوع المشروع</label>
+                            <select id="idea-type" name="type" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                                <option value="">اختر نوع المشروع</option>
+                                <option value="website">موقع ويب</option>
+                                <option value="ecommerce">متجر إلكتروني</option>
+                                <option value="webapp">تطبيق ويب</option>
+                                <option value="mobile">تطبيق جوال</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="idea-budget" class="block text-sm font-medium text-gray-700 mb-1">الميزانية المتوقعة</label>
+                            <select id="idea-budget" name="budget" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                                <option value="">اختر الميزانية</option>
+                                <option value="small">أقل من 5,000 ريال</option>
+                                <option value="medium">5,000 - 15,000 ريال</option>
+                                <option value="large">15,000 - 30,000 ريال</option>
+                                <option value="enterprise">أكثر من 30,000 ريال</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="idea-description" class="block text-sm font-medium text-gray-700 mb-1">تفاصيل المشروع</label>
+                            <textarea id="idea-description" name="description" rows="6" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                                placeholder="اشرح فكرة مشروعك بالتفصيل..."></textarea>
+                        </div>
+
+                        <div>
+                            <label for="idea-timeline" class="block text-sm font-medium text-gray-700 mb-1">المدة المتوقعة للتنفيذ</label>
+                            <select id="idea-timeline" name="timeline" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                                <option value="">اختر المدة المتوقعة</option>
+                                <option value="1month">شهر أو أقل</option>
+                                <option value="3months">1-3 أشهر</option>
+                                <option value="6months">3-6 أشهر</option>
+                                <option value="more">أكثر من 6 أشهر</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" 
+                            class="w-full bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center gap-2 text-lg">
+                            <span>إرسال الفكرة</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold text-primary-500">غافلي</h3>
+                    <p class="text-gray-400">مطور ويب متكامل متخصص في بناء حلول رقمية مبتكرة وعصرية</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-primary-500 transition-colors">الرئيسية</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-primary-500 transition-colors">خدماتي</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-primary-500 transition-colors">أعمالي</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-primary-500 transition-colors">تواصل معي</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold">معلومات التواصل</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-primary-500"></i>
+                            <a href="mailto:contact@ghafli.com" class="text-gray-400 hover:text-primary-500 transition-colors">contact@ghafli.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone text-primary-500"></i>
+                            <a href="tel:+966500000000" class="text-gray-400 hover:text-primary-500 transition-colors">+966 50 000 0000</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold">تابعني</h4>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 غافلي. جميع الحقوق محفوظة</p>
+            </div>
         </div>
     </footer>
 
-    // Remove the existing script and replace it with this:
-
     <script>
+        // Language switcher functionality
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                document.documentElement.setAttribute('data-lang', lang);
+            });
+        });
+
         // Wrap in try-catch to handle potential errors
         try {
           // Your code here

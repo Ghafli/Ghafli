@@ -1,269 +1,301 @@
-import { useState, useEffect } from 'react';
-import {
-  Box,
-  Grid,
-  Paper,
-  Typography,
-  Button,
-  Card,
-  CardContent,
-  CircularProgress,
-  useTheme,
-} from '@mui/material';
-import {
-  Add as AddIcon,
-  School as SchoolIcon,
-  Assessment as AssessmentIcon,
-  LibraryBooks as LibraryBooksIcon,
-} from '@mui/icons-material';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { Box, Container, Grid, Paper, Typography, CircularProgress, Alert, Button } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import { auth } from '../../lib/firebase';
+import { getData } from '../../lib/db/utils';
+import { StudyStats, UserProfile } from '../../lib/db/types';
+import useAchievements from '../../lib/hooks/useAchievements';
+import RecentDecks from './RecentDecks';
+import StatsOverview from './StatsOverview';
+import AchievementsPanel from './AchievementsPanel';
+import { useErrorBoundary } from 'react-error-boundary';
 
-// Lazy load dashboard components
-const AchievementsSummary = dynamic(() => import('./AchievementsSummary'), {
-  loading: () => <CircularProgress />,
-  ssr: false
-});
-
-const StudyStats = dynamic(() => import('./StudyStats'), {
-  loading: () => <CircularProgress />,
-  ssr: false
-});
-
-const RecentDecks = dynamic(() => import('./RecentDecks'), {
-  loading: () => <CircularProgress />,
-  ssr: false
-});
-
-interface DashboardStats {
-  totalCards: number;
-  totalDecks: number;
-  cardsStudied: number;
-  studyTime: number;
+interface DashboardError {
+  message: string;
+  code?: string;
+  retryable: boolean;
 }
 
-interface Deck {
-  _id: string;
-  title: string;
-  description: string;
-  cardCount: number;
-  lastStudied?: Date;
+interface DashboardState {
+  stats: StudyStats | null;
+  profile: UserProfile | null;
+  loading: boolean;
+  error: DashboardError | null;
+  lastUpdated: number | null;
 }
 
-interface StatCardProps {
-  title: string;
-  value: number | string;
-  icon: React.ReactNode;
-  color: string;
-}
-
-// Move StatCard outside of Dashboard component
-const StatCard: React.FC<StatCardProps> = ({ title, value, icon, color }) => (
-  <Card sx={{ height: '100%' }}>
-    <CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-        {icon}
-        <Typography variant="h6" component="div" sx={{ ml: 1 }}>
-          {title}
-        </Typography>
-      </Box>
-      <Typography variant="h4" component="div" color={color}>
-        {value}
-      </Typography>
-    </CardContent>
-  </Card>
-);
+const CACHE_KEY = 'dashboard-cache-v1';
+const CACHE_DURATION = 30000; // 30 seconds
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 3000; // 3 seconds
+const REFRESH_INTERVAL = 60000; // 1 minute
 
 export default function Dashboard() {
-  const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [recentDecks, setRecentDecks] = useState<Deck[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [state, setState] = useState<DashboardState>({
+    stats: null,
+    profile: null,
+    loading: true,
+    error: null,
+    lastUpdated: null
+  });
+  const [retryCount, setRetryCount] = useState(0);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  
   const router = useRouter();
-  const { data: session } = useSession();
-  const theme = useTheme();
+  const { showBoundary } = useErrorBoundary();
+  const { achievements, loading: achievementsLoading, error: achievementsError } = useAchievements();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [statsResponse, decksResponse] = await Promise.all([
-          fetch('/api/stats'),
-          fetch('/api/decks/recent')
-        ]);
+  const getCachedData = useCallback(() => {
+    try {
+      const cached = sessionStorage.getItem(CACHE_KEY);
+      if (!cached) return null;
 
-        // Log response status for debugging
-        console.log('Stats Response:', statsResponse.status);
-        console.log('Decks Response:', decksResponse.status);
-
-        if (!statsResponse.ok || !decksResponse.ok) {
-          // Get error messages from responses
-          const statsError = await statsResponse.text().catch(() => 'No error details');
-          const decksError = await decksResponse.text().catch(() => 'No error details');
-          
-          console.error('Stats Error:', statsError);
-          console.error('Decks Error:', decksError);
-          
-          throw new Error(`Failed to fetch data - Stats: ${statsResponse.status}, Decks: ${decksResponse.status}`);
-        }
-
-        const [statsData, decksData] = await Promise.all([
-          statsResponse.json(),
-          decksResponse.json()
-        ]);
-
-        setStats(statsData);
-        setRecentDecks(decksData);
-      } catch (error) {
-        console.error('Error fetching dashboard data:', error);
-        // Set default values on error
-        setStats({
-          totalCards: 0,
-          totalDecks: 0,
-          cardsStudied: 0,
-          studyTime: 0
-        });
-        setRecentDecks([]);
-      } finally {
-        setLoading(false);
+      const data = JSON.parse(cached);
+      if (Date.now() - data.timestamp < CACHE_DURATION) {
+        return data;
       }
-    };
-
-    fetchData();
+    } catch (err) {
+      console.warn('Cache read error:', err);
+    }
+    return null;
   }, []);
 
-  if (loading) {
+  const cacheData = useCallback((data: { stats: StudyStats; profile: UserProfile }) => {
+    try {
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({
+        ...data,
+        timestamp: Date.now()
+      }));
+    } catch (err) {
+      console.warn('Cache write error:', err);
+    }
+  }, []);
+
+  const createError = useCallback((err: any): DashboardError => {
+    console.error('Dashboard error:', err);
+
+    if (err.code === 'PERMISSION_DENIED') {
+      return {
+        message: 'You do not have permission to view this dashboard',
+        code: err.code,
+        retryable: false
+      };
+    }
+    
+    if (err.code === 'AUTH_ERROR') {
+      return {
+        message: 'Please sign in to view your dashboard',
+        code: err.code,
+        retryable: false
+      };
+    }
+    
+    if (err.code === 'NETWORK_ERROR') {
+      return {
+        message: 'Network error. Please check your connection',
+        code: err.code,
+        retryable: true
+      };
+    }
+
+    return {
+      message: 'Failed to load dashboard data. Please try again',
+      code: err.code,
+      retryable: true
+    };
+  }, []);
+
+  const fetchDashboardData = useCallback(async (options: { 
+    showLoading?: boolean; 
+    background?: boolean;
+  } = {}) => {
+    const { showLoading = true, background = false } = options;
+
+    if (!auth.currentUser) {
+      setState(prev => ({
+        ...prev,
+        loading: false,
+        error: {
+          message: 'Please sign in to view your dashboard',
+          code: 'AUTH_ERROR',
+          retryable: false
+        }
+      }));
+      return;
+    }
+
+    try {
+      if (showLoading) {
+        setState(prev => ({ ...prev, loading: true }));
+      }
+      if (!background) {
+        setState(prev => ({ ...prev, error: null }));
+      }
+
+      const [statsData, profileData] = await Promise.all([
+        getData<StudyStats>('stats'),
+        getData<UserProfile>('profile')
+      ]);
+
+      if (!statsData || !profileData) {
+        throw new Error('Invalid dashboard data');
+      }
+
+      setState(prev => ({
+        ...prev,
+        stats: statsData,
+        profile: profileData,
+        error: null,
+        loading: false,
+        lastUpdated: Date.now()
+      }));
+
+      cacheData({ stats: statsData, profile: profileData });
+
+    } catch (err: any) {
+      if (retryCount < MAX_RETRIES) {
+        setRetryCount(prev => prev + 1);
+        setTimeout(
+          () => fetchDashboardData({ showLoading: false }), 
+          RETRY_DELAY * Math.pow(2, retryCount)
+        );
+        return;
+      }
+
+      const error = createError(err);
+      setState(prev => ({ ...prev, error, loading: false }));
+      
+      if (error.code === 'PERMISSION_DENIED' || error.code === 'AUTH_ERROR') {
+        showBoundary(err);
+      }
+    } finally {
+      setIsRefreshing(false);
+    }
+  }, [retryCount, createError, showBoundary, cacheData]);
+
+  useEffect(() => {
+    const cachedData = getCachedData();
+    if (cachedData) {
+      setState(prev => ({
+        ...prev,
+        stats: cachedData.stats,
+        profile: cachedData.profile,
+        loading: false,
+        lastUpdated: cachedData.timestamp
+      }));
+      // Fetch fresh data in background
+      fetchDashboardData({ showLoading: false, background: true }).catch(console.error);
+    } else {
+      fetchDashboardData();
+    }
+
+    const refreshInterval = setInterval(() => {
+      if (!isRefreshing && !state.error?.retryable === false) {
+        setIsRefreshing(true);
+        fetchDashboardData({ showLoading: false, background: true }).catch(console.error);
+      }
+    }, REFRESH_INTERVAL);
+
+    return () => clearInterval(refreshInterval);
+  }, [fetchDashboardData, getCachedData, isRefreshing, state.error]);
+
+  const handleRetry = useCallback(() => {
+    setRetryCount(0);
+    setState(prev => ({ ...prev, error: null }));
+    fetchDashboardData();
+  }, [fetchDashboardData]);
+
+  const welcomeMessage = useMemo(() => {
+    if (!state.profile) return 'Welcome back!';
+    const hour = new Date().getHours();
+    const name = state.profile.displayName || 'there';
+    
+    if (hour < 12) return `Good morning, ${name}!`;
+    if (hour < 18) return `Good afternoon, ${name}!`;
+    return `Good evening, ${name}!`;
+  }, [state.profile]);
+
+  if (state.loading && !state.stats && !state.profile) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-        <CircularProgress />
+      <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+        <CircularProgress size={40} />
       </Box>
     );
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
-        <Typography variant="h4" component="h1">
-          Welcome back, {session?.user?.name}!
-        </Typography>
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          onClick={() => router.push('/flashcards/create')}
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      {state.error && (
+        <Alert 
+          severity="error" 
+          sx={{ mb: 3 }}
+          action={state.error.retryable && (
+            <Button 
+              color="inherit" 
+              size="small"
+              onClick={handleRetry}
+              disabled={state.loading}
+            >
+              Retry
+            </Button>
+          )}
         >
-          Create Flashcard
-        </Button>
-      </Box>
+          {state.error.message}
+        </Alert>
+      )}
 
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Total Cards"
-            value={stats?.totalCards || 0}
-            icon={<LibraryBooksIcon color="primary" />}
-            color="primary.main"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Total Decks"
-            value={stats?.totalDecks || 0}
-            icon={<LibraryBooksIcon color="secondary" />}
-            color="secondary.main"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Cards Studied"
-            value={stats?.cardsStudied || 0}
-            icon={<SchoolIcon color="success" />}
-            color="success.main"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Study Time (hrs)"
-            value={((stats?.studyTime || 0) / 60).toFixed(1)}
-            icon={<AssessmentIcon color="info" />}
-            color="info.main"
-          />
-        </Grid>
-      </Grid>
+      <Typography variant="h4" gutterBottom>
+        {welcomeMessage}
+      </Typography>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h6" gutterBottom>
-              Quick Actions
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-              <Button
-                variant="outlined"
-                startIcon={<SchoolIcon />}
-                onClick={() => router.push('/study')}
-              >
-                Start Studying
-              </Button>
-              <Button
-                variant="outlined"
-                startIcon={<LibraryBooksIcon />}
-                onClick={() => router.push('/flashcards')}
-              >
-                View All Cards
-              </Button>
-              <Button
-                variant="outlined"
-                startIcon={<AssessmentIcon />}
-                onClick={() => router.push('/statistics')}
-              >
-                View Statistics
-              </Button>
-            </Box>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h6" gutterBottom>
-              Recent Activity
-            </Typography>
-            {/* Add recent activity component here */}
-          </Paper>
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={3}>
-        {/* Study Stats */}
+        {/* Stats Overview */}
         <Grid item xs={12} md={8}>
-          <Suspense fallback={<CircularProgress />}>
-            <StudyStats
-              totalStudyTime={stats?.studyTime || 0}
-              cardsStudied={stats?.cardsStudied || 0}
-            />
-          </Suspense>
+          <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+            {state.loading && !state.stats ? (
+              <Box sx={{ p: 2, textAlign: 'center' }}>
+                <CircularProgress size={24} />
+              </Box>
+            ) : (
+              <StatsOverview stats={state.stats} />
+            )}
+          </Paper>
         </Grid>
 
-        {/* Achievements Summary */}
+        {/* Achievements Panel */}
         <Grid item xs={12} md={4}>
-          <Suspense fallback={
-            <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
-              <CircularProgress />
-            </Box>
-          }>
-            <AchievementsSummary />
-          </Suspense>
+          <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+            {achievementsLoading ? (
+              <Box sx={{ p: 2, textAlign: 'center' }}>
+                <CircularProgress size={24} />
+              </Box>
+            ) : achievementsError ? (
+              <Alert severity="error">
+                Failed to load achievements
+              </Alert>
+            ) : (
+              <AchievementsPanel achievements={achievements} />
+            )}
+          </Paper>
         </Grid>
 
         {/* Recent Decks */}
         <Grid item xs={12}>
-          <Suspense fallback={
-            <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
-              <CircularProgress />
-            </Box>
-          }>
-            <RecentDecks decks={recentDecks} />
-          </Suspense>
+          <Paper sx={{ p: 2 }}>
+            <RecentDecks />
+          </Paper>
         </Grid>
       </Grid>
-    </Box>
+
+      {state.lastUpdated && (
+        <Typography 
+          variant="caption" 
+          color="text.secondary"
+          sx={{ display: 'block', textAlign: 'center', mt: 2 }}
+        >
+          Last updated: {new Date(state.lastUpdated).toLocaleTimeString()}
+        </Typography>
+      )}
+    </Container>
   );
 }

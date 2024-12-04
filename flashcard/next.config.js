@@ -1,11 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
+  images: {
+    unoptimized: true,
+    domains: ['localhost'],
+  },
+  basePath: process.env.NODE_ENV === 'production' ? '/flashcard' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/flashcard/' : '',
   experimental: {
     optimizeCss: true
   },
   webpack: (config, { dev, isServer }) => {
-    // Optimize production builds
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
@@ -15,34 +21,18 @@ const nextConfig = {
         maxAsyncRequests: 30,
         maxInitialRequests: 30,
         cacheGroups: {
-          default: false,
-          vendors: false,
-          framework: {
-            chunks: 'all',
-            name: 'framework',
-            test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
-            priority: 40,
-            enforce: true,
-          },
-          mui: {
-            name: 'mui',
-            test: /[\\/]node_modules[\\/]@mui[\\/]/,
-            chunks: 'all',
-            priority: 30,
-          },
-          commons: {
-            name: 'commons',
-            minChunks: 2,
-            priority: 20,
-          },
-          lib: {
+          vendor: {
             test: /[\\/]node_modules[\\/]/,
             name(module) {
               const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-              return `lib.${packageName.replace('@', '')}`;
+              return `npm.${packageName.replace('@', '')}`;
             },
-            priority: 10,
-            minChunks: 1,
+            priority: -10,
+            reuseExistingChunk: true,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
             reuseExistingChunk: true,
           },
         },

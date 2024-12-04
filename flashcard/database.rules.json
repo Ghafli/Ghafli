@@ -1,0 +1,55 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        // Allow read/write access only to authenticated users accessing their own data
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid",
+        
+        "profile": {
+          ".validate": "newData.hasChildren(['email', 'createdAt'])"
+        },
+        
+        "stats": {
+          ".validate": "newData.hasChildren(['cardsStudied', 'studyTime', 'successRate'])",
+          "cardsStudied": { ".validate": "newData.isNumber()" },
+          "studyTime": { ".validate": "newData.isNumber()" },
+          "successRate": { 
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100" 
+          }
+        },
+        
+        "decks": {
+          "$deckId": {
+            ".validate": "newData.hasChildren(['name', 'createdAt', 'lastStudied'])",
+            "name": { ".validate": "newData.isString() && newData.val().length > 0" },
+            "createdAt": { ".validate": "newData.isNumber()" },
+            "lastStudied": { ".validate": "newData.isNumber()" },
+            "cards": {
+              "$cardId": {
+                ".validate": "newData.hasChildren(['front', 'back', 'nextReview'])",
+                "front": { ".validate": "newData.isString() && newData.val().length > 0" },
+                "back": { ".validate": "newData.isString() && newData.val().length > 0" },
+                "nextReview": { ".validate": "newData.isNumber()" }
+              }
+            }
+          }
+        },
+        
+        "achievements": {
+          "$achievementId": {
+            ".validate": "newData.hasChildren(['type', 'currentValue', 'requirement'])",
+            "type": { 
+              ".validate": "newData.isString() && newData.val().matches(/^(study_count|streak|mastery|special)$/)" 
+            },
+            "currentValue": { ".validate": "newData.isNumber()" },
+            "requirement": { ".validate": "newData.isNumber()" }
+          }
+        }
+      }
+    },
+    
+    // Default deny all other paths
+    "$other": { ".read": false, ".write": false }
+  }
+}

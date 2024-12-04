@@ -1,90 +1,124 @@
 import React from 'react';
-import { Box, Card, CardContent, Typography, Grid } from '@mui/material';
-import { TimerOutlined, MenuBookOutlined, CalendarTodayOutlined } from '@mui/icons-material';
+import { useStudyStats } from '../../lib/hooks/useStudyStats';
+import { Box, Paper, Typography, Grid, CircularProgress, Skeleton, Tooltip } from '@mui/material';
+import { School, Timer, TrendingUp, Event } from '@mui/icons-material';
 
 interface StudyStatsProps {
-  totalStudyTime: number;
-  cardsStudied: number;
-  lastStudySession?: Date;
+  stats?: {
+    cardsStudied: number;
+    studyTime: number;
+    successRate: number;
+  };
 }
 
-const StudyStats: React.FC<StudyStatsProps> = ({ totalStudyTime, cardsStudied, lastStudySession }) => {
-  const formatTime = (minutes: number): string => {
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-    return hours > 0 ? `${hours}h ${remainingMinutes}m` : `${remainingMinutes}m`;
-  };
+const StudyStats: React.FC<StudyStatsProps> = () => {
+  const { stats, loading, error, getFormattedStats } = useStudyStats();
+  
+  if (loading) {
+    return (
+      <Paper sx={{ p: 3 }}>
+        <Typography variant="h6" gutterBottom>Study Statistics</Typography>
+        <Grid container spacing={3}>
+          {[...Array(4)].map((_, index) => (
+            <Grid item xs={6} sm={3} key={index}>
+              <Box display="flex" flexDirection="column" alignItems="center" textAlign="center">
+                <Skeleton variant="circular" width={24} height={24} sx={{ mb: 1 }} />
+                <Skeleton width={80} height={20} sx={{ mb: 1 }} />
+                <Skeleton width={60} height={32} />
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Paper>
+    );
+  }
 
-  const formatLastStudyDate = (date?: Date): string => {
-    if (!date) return 'No sessions yet';
-    return new Date(date).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
+  if (error) {
+    return (
+      <Paper sx={{ p: 3, bgcolor: 'error.light' }}>
+        <Typography color="error">Failed to load study statistics</Typography>
+      </Paper>
+    );
+  }
+
+  const formattedStats = getFormattedStats();
+  if (!formattedStats) return null;
+
+  const statItems = [
+    {
+      icon: <School />,
+      label: 'Cards Studied',
+      value: formattedStats.totalCards.toString(),
+      tooltip: 'Total number of cards you have studied'
+    },
+    {
+      icon: <Timer />,
+      label: 'Study Time',
+      value: formattedStats.totalTime,
+      tooltip: 'Total time spent studying'
+    },
+    {
+      icon: <TrendingUp />,
+      label: 'Success Rate',
+      value: formattedStats.successRate,
+      tooltip: 'Percentage of correct answers'
+    },
+    {
+      icon: <Event />,
+      label: 'Last Study',
+      value: formattedStats.lastStudy,
+      tooltip: 'Last time you studied'
+    }
+  ];
 
   return (
-    <Box sx={{ flexGrow: 1, mb: 4 }}>
+    <Paper sx={{ p: 3 }}>
+      <Typography variant="h6" gutterBottom>Study Statistics</Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={4}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent>
-              <Box display="flex" alignItems="center" mb={2}>
-                <TimerOutlined sx={{ mr: 1, color: 'primary.main' }} />
-                <Typography variant="h6" component="div">
-                  Study Time
+        {statItems.map((item, index) => (
+          <Grid item xs={6} sm={3} key={index}>
+            <Tooltip title={item.tooltip} arrow>
+              <Box 
+                display="flex" 
+                flexDirection="column" 
+                alignItems="center" 
+                textAlign="center"
+                sx={{
+                  p: 1.5,
+                  borderRadius: 1,
+                  transition: 'all 0.2s ease-in-out',
+                  '&:hover': {
+                    bgcolor: 'action.hover',
+                    transform: 'translateY(-2px)',
+                    '& .MuiSvgIcon-root': {
+                      transform: 'scale(1.1)',
+                    }
+                  }
+                }}
+              >
+                <Box 
+                  color="primary.main" 
+                  mb={1}
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      transition: 'transform 0.2s ease-in-out'
+                    }
+                  }}
+                >
+                  {item.icon}
+                </Box>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  {item.label}
+                </Typography>
+                <Typography variant="h6">
+                  {item.value}
                 </Typography>
               </Box>
-              <Typography variant="h4" color="primary">
-                {formatTime(totalStudyTime)}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Total time spent studying
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent>
-              <Box display="flex" alignItems="center" mb={2}>
-                <MenuBookOutlined sx={{ mr: 1, color: 'primary.main' }} />
-                <Typography variant="h6" component="div">
-                  Cards Studied
-                </Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {cardsStudied}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Total cards reviewed
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent>
-              <Box display="flex" alignItems="center" mb={2}>
-                <CalendarTodayOutlined sx={{ mr: 1, color: 'primary.main' }} />
-                <Typography variant="h6" component="div">
-                  Last Session
-                </Typography>
-              </Box>
-              <Typography variant="h4" color="primary" sx={{ fontSize: '1.75rem' }}>
-                {formatLastStudyDate(lastStudySession)}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Most recent study session
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
+            </Tooltip>
+          </Grid>
+        ))}
       </Grid>
-    </Box>
+    </Paper>
   );
 };
 

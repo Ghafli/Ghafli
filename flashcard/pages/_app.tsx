@@ -1,27 +1,41 @@
-import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { SessionProvider } from 'next-auth/react';
-import Layout from '@/components/layout/Layout';
-import { useRouter } from 'next/router';
+import { AuthProvider } from '../contexts/AuthContext';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { useEffect } from 'react';
+import { auth } from '../lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
-const noLayoutPages = ['/auth/signin']; // Add any pages that shouldn't use the layout
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#2196f3',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+});
 
-export default function App({ 
-  Component, 
-  pageProps: { session, ...pageProps }
-}: AppProps) {
-  const router = useRouter();
-  const shouldUseLayout = !noLayoutPages.includes(router.pathname);
+function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // You can handle auth state changes here
+      console.log('Auth state changed:', user ? 'logged in' : 'logged out');
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <SessionProvider session={session}>
-      {shouldUseLayout ? (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      ) : (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AuthProvider>
         <Component {...pageProps} />
-      )}
-    </SessionProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
+
+export default MyApp;

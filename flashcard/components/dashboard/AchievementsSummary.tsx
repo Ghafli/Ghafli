@@ -1,140 +1,118 @@
-import { useState, useEffect } from 'react';
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  LinearProgress,
-  Grid,
-  Button,
-  Avatar,
+import React, { useEffect } from 'react';
+import { 
+  Paper, 
+  Typography, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  LinearProgress, 
+  Box, 
+  CircularProgress, 
+  Tooltip,
+  Collapse,
+  Alert
 } from '@mui/material';
-import { useRouter } from 'next/router';
-import { EmojiEvents as TrophyIcon } from '@mui/icons-material';
+import { EmojiEvents } from '@mui/icons-material';
+import { Achievement } from '../../lib/db/types';
 
-interface Achievement {
-  _id: string;
-  name: string;
-  description: string;
-  progress: {
-    current: number;
-    target: number;
-  };
-  completed: boolean;
-  icon: string;
+interface AchievementsSummaryProps {
+  achievements: { [key: string]: Achievement };
+  newlyUnlocked: Achievement[];
 }
 
-export default function AchievementsSummary() {
-  const [recentAchievements, setRecentAchievements] = useState<Achievement[]>([]);
-  const [nextAchievements, setNextAchievements] = useState<Achievement[]>([]);
-  const router = useRouter();
+const AchievementsSummary: React.FC<AchievementsSummaryProps> = ({ 
+  achievements,
+  newlyUnlocked
+}) => {
+  const sortedAchievements = React.useMemo(() => {
+    return Object.values(achievements).sort((a, b) => {
+      // First prioritize unlocked achievements
+      if (a.unlockedAt && !b.unlockedAt) return -1;
+      if (!a.unlockedAt && b.unlockedAt) return 1;
+      
+      // Then sort by progress percentage
+      const aProgress = (a.currentValue / a.requirement) * 100;
+      const bProgress = (b.currentValue / b.requirement) * 100;
+      if (aProgress !== bProgress) return bProgress - aProgress;
+      
+      // Finally sort by name
+      return a.name.localeCompare(b.name);
+    });
+  }, [achievements]);
 
-  useEffect(() => {
-    fetchAchievements();
+  const getProgress = React.useCallback((achievement: Achievement) => {
+    return Math.min(
+      Math.round((achievement.currentValue / achievement.requirement) * 100),
+      100
+    );
   }, []);
 
-  const fetchAchievements = async () => {
-    try {
-      // Get recently completed achievements
-      const recentResponse = await fetch('/api/achievements?completed=true&limit=3');
-      const recentData = await recentResponse.json();
-      setRecentAchievements(recentData);
-
-      // Get next achievements to complete
-      const nextResponse = await fetch('/api/achievements?completed=false&limit=3');
-      const nextData = await nextResponse.json();
-      setNextAchievements(nextData);
-    } catch (error) {
-      console.error('Error fetching achievements:', error);
-    }
-  };
-
   return (
-    <Card>
-      <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-          <Typography variant="h6">
-            Achievements
-          </Typography>
-          <Button
-            variant="outlined"
-            size="small"
-            onClick={() => router.push('/achievements')}
-          >
-            View All
-          </Button>
-        </Box>
+    <Paper sx={{ p: 3 }}>
+      <Box display="flex" alignItems="center" mb={2}>
+        <EmojiEvents color="primary" sx={{ mr: 1 }} />
+        <Typography variant="h6">Achievements</Typography>
+      </Box>
 
-        {recentAchievements.length > 0 && (
-          <Box sx={{ mb: 4 }}>
-            <Typography variant="subtitle2" gutterBottom>
-              Recently Completed
-            </Typography>
-            <Grid container spacing={2}>
-              {recentAchievements.map((achievement) => (
-                <Grid item xs={12} key={achievement._id}>
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>
-                      {achievement.icon}
-                    </Avatar>
-                    <Box>
-                      <Typography variant="subtitle2">
+      <Collapse in={newlyUnlocked.length > 0}>
+        <Alert 
+          severity="success" 
+          sx={{ mb: 2 }}
+        >
+          {newlyUnlocked.length === 1 
+            ? `New achievement unlocked: ${newlyUnlocked[0].name}!`
+            : `${newlyUnlocked.length} new achievements unlocked!`}
+        </Alert>
+      </Collapse>
+
+      {sortedAchievements.length === 0 ? (
+        <Typography color="text.secondary" align="center" py={3}>
+          Start studying to unlock achievements!
+        </Typography>
+      ) : (
+        <List>
+          {sortedAchievements.map((achievement) => {
+            const progress = getProgress(achievement);
+            const isComplete = achievement.unlockedAt != null;
+
+            return (
+              <ListItem key={achievement.id}>
+                <Box sx={{ width: '100%' }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Tooltip title={achievement.description}>
+                      <Typography 
+                        variant="subtitle2" 
+                        color={isComplete ? 'success.main' : 'text.primary'}
+                        sx={{ fontWeight: isComplete ? 600 : 400 }}
+                      >
                         {achievement.name}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {achievement.description}
-                      </Typography>
-                    </Box>
-                    <TrophyIcon sx={{ ml: 'auto', color: 'success.main' }} />
+                    </Tooltip>
+                    <Typography variant="body2" color="text.secondary">
+                      {achievement.currentValue}/{achievement.requirement}
+                    </Typography>
                   </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        )}
-
-        {nextAchievements.length > 0 && (
-          <Box>
-            <Typography variant="subtitle2" gutterBottom>
-              Next Goals
-            </Typography>
-            <Grid container spacing={2}>
-              {nextAchievements.map((achievement) => (
-                <Grid item xs={12} key={achievement._id}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <Avatar sx={{ bgcolor: 'action.disabledBackground', mr: 2 }}>
-                      {achievement.icon}
-                    </Avatar>
-                    <Box sx={{ flexGrow: 1 }}>
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Typography variant="subtitle2">
-                          {achievement.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {achievement.progress.current}/{achievement.progress.target}
-                        </Typography>
-                      </Box>
-                      <LinearProgress
-                        variant="determinate"
-                        value={(achievement.progress.current / achievement.progress.target) * 100}
-                        sx={{ mt: 1, height: 6, borderRadius: 3 }}
-                      />
-                    </Box>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        )}
-
-        {recentAchievements.length === 0 && nextAchievements.length === 0 && (
-          <Box sx={{ textAlign: 'center', py: 3 }}>
-            <Typography color="text.secondary">
-              Start studying to earn achievements!
-            </Typography>
-          </Box>
-        )}
-      </CardContent>
-    </Card>
+                  <LinearProgress
+                    variant="determinate"
+                    value={progress}
+                    sx={{
+                      mt: 1,
+                      height: 8,
+                      borderRadius: 1,
+                      bgcolor: 'action.hover',
+                      '& .MuiLinearProgress-bar': {
+                        bgcolor: isComplete ? 'success.main' : 'primary.main',
+                      },
+                    }}
+                  />
+                </Box>
+              </ListItem>
+            );
+          })}
+        </List>
+      )}
+    </Paper>
   );
-}
+};
+
+export default AchievementsSummary;
