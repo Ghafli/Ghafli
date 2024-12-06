@@ -2,7 +2,6 @@
   "rules": {
     "users": {
       "$uid": {
-        // Allow read/write access only to authenticated users accessing their own data
         ".read": "$uid === auth.uid",
         ".write": "$uid === auth.uid",
         
@@ -49,7 +48,6 @@
       }
     },
     
-    // Default deny all other paths
     "$other": { ".read": false, ".write": false }
   }
 }

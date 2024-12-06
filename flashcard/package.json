@@ -16,7 +16,8 @@
     "prebuild": "npm run clean",
     "postbuild": "next-sitemap",
     "migrate:up": "ts-node scripts/migrate.ts up",
-    "migrate:down": "ts-node scripts/migrate.ts down"
+    "migrate:down": "ts-node scripts/migrate.ts down",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -32,8 +33,12 @@
     "@mui/lab": "^5.0.0-alpha.155",
     "@mui/material": "^5.14.20",
     "@next-auth/mongodb-adapter": "^1.1.3",
+    "@types/chart.js": "^2.9.41",
+    "@types/react-router-dom": "^5.3.3",
     "bcryptjs": "^2.4.3",
+    "chart.js": "^4.4.7",
     "firebase": "^11.0.2",
+    "firebase-admin": "^13.0.1",
     "mongodb": "^5.9.2",
     "mongoose": "^8.0.2",
     "next": "14.0.3",
@@ -42,10 +47,12 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.1.2",
     "react-hook-form": "^7.48.2",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^7.0.2",
     "yup": "^1.3.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "@types/bcryptjs": "^2.4.6",

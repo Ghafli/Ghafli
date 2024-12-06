@@ -1,7 +1,9 @@
 import type { AppProps } from 'next/app';
+import { SessionProvider } from 'next-auth/react';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
+import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -18,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       // You can handle auth state changes here
@@ -29,12 +31,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AuthProvider>
-        <Component {...pageProps} />
-      </AuthProvider>
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AuthProvider>
+          <Component {...pageProps} />
+          <Toaster position="bottom-right" />
+        </AuthProvider>
+      </ThemeProvider>
+    </SessionProvider>
   );
 }
 

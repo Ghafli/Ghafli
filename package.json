@@ -5,14 +5,17 @@
   "scripts": {
     "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "test": "jest",
+    "test": "cross-env NODE_NO_WARNINGS=1 jest",
     "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
+    "cross-env": "^7.0.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "tailwindcss": "^3.3.3"
@@ -21,6 +24,9 @@
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/flashcard/$1"
+    }
   }
 }
